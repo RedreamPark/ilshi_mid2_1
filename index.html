@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>예문 빈칸 + 어법 퀴즈 — L1 & L2</title>
+<title>단원평가 모음 — L1 & L2</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Fredoka+One&display=swap');
 :root{
   --bg:#0f172a;--card:#1e293b;--card2:#253347;
-  --primary:#a78bfa;--primary-d:#7c3aed;
-  --green:#34d399;--red:#f87171;--yellow:#fbbf24;--cyan:#38bdf8;
+  --primary:#fb923c;--primary-d:#ea580c;
+  --green:#34d399;--red:#f87171;--yellow:#fbbf24;--blue:#38bdf8;
   --text:#f1f5f9;--muted:#94a3b8;--border:#334155;--r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-.hdr{background:linear-gradient(135deg,#7c3aed,#2563eb);padding:14px 16px 12px;position:sticky;top:0;z-index:50;}
+.hdr{background:linear-gradient(135deg,#ea580c,#9333ea);padding:14px 16px 12px;position:sticky;top:0;z-index:50;}
 .hdr-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .hdr h1{font-family:'Fredoka One',sans-serif;font-size:1.2rem;flex:1;}
 .score-chip{background:rgba(255,255,255,.2);border-radius:99px;padding:4px 12px;font-size:.82rem;font-weight:700;}
@@ -30,497 +30,425 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .sec-title{font-family:'Fredoka One',sans-serif;font-size:1.05rem;color:var(--primary);margin-bottom:12px;}
 .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.72rem;font-weight:900;}
 .b1{background:#0c4a6e;color:#38bdf8;}.b2{background:#4c1d95;color:#a78bfa;}
-
-/* FILL BLANK */
-.fill-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
-.fill-num{font-size:.75rem;font-weight:900;color:var(--muted);margin-bottom:8px;}
-.fill-ko{font-size:.82rem;color:var(--muted);margin-bottom:10px;line-height:1.6;background:var(--card2);border-radius:8px;padding:8px 10px;}
-.fill-en{font-size:.95rem;line-height:2;margin-bottom:10px;font-weight:700;}
-.blank{
-  display:inline-block;min-width:80px;border:none;border-bottom:2px solid var(--primary);
-  background:transparent;font-size:.92rem;font-family:inherit;outline:none;
-  padding:0 4px;color:var(--text);text-align:center;font-weight:700;
-}
-.blank.ok{border-color:var(--green);color:var(--green);}
-.blank.err{border-color:var(--red);color:var(--red);}
-.hint-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
-.hint-chip{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:.8rem;cursor:pointer;transition:all .2s;}
-.hint-chip:active{background:var(--primary);color:#fff;}
-.hint-chip.used{opacity:.3;pointer-events:none;}
-.fill-feedback{padding:8px 12px;border-radius:8px;font-size:.82rem;font-weight:700;margin-top:6px;display:none;}
-.fill-feedback.show{display:block;}
-.fill-feedback.ok{background:#064e3b;color:var(--green);}
-.fill-feedback.err{background:#450a0a;color:var(--red);}
-
-/* GRAMMAR CONCEPT */
-.concept-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
-.concept-card h3{font-size:.95rem;font-weight:900;color:var(--cyan);margin-bottom:10px;}
-.rule-box{background:var(--card2);border-left:3px solid var(--primary);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px;font-size:.85rem;line-height:1.8;}
-.rule-box strong{color:var(--primary);}
-.ex-box{background:#1e1b4b;border-radius:8px;padding:10px 12px;margin:6px 0;font-size:.85rem;line-height:1.7;}
-.ex-ko{color:var(--muted);font-size:.78rem;margin-top:2px;}
-
-/* GRAMMAR QUIZ */
-.gq-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
-.gq-num{font-size:.75rem;font-weight:900;color:var(--muted);margin-bottom:6px;}
-.gq-q{font-size:.92rem;font-weight:700;line-height:1.7;margin-bottom:12px;color:var(--text);}
-.gq-q .blank-q{display:inline-block;min-width:60px;border-bottom:2px solid var(--cyan);color:var(--cyan);text-align:center;}
+.stat-row{display:flex;justify-content:space-around;background:var(--card);border-radius:var(--r);padding:12px;margin-bottom:12px;}
+.stat .n{font-size:1.3rem;font-weight:900;text-align:center;}
+.stat .l{font-size:.72rem;color:var(--muted);text-align:center;}
+.q-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:10px;border:1px solid var(--border);}
+.q-meta{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.q-num{font-size:.75rem;font-weight:900;color:var(--muted);}
+.q-type{font-size:.7rem;background:var(--card2);color:var(--muted);padding:2px 8px;border-radius:6px;}
+.q-text{font-size:.9rem;font-weight:700;line-height:1.7;margin-bottom:8px;color:var(--text);}
+.q-passage{background:var(--card2);border-radius:8px;padding:12px;margin-bottom:10px;font-size:.82rem;line-height:1.8;color:#cbd5e1;border-left:3px solid var(--blue);}
 .opts{display:flex;flex-direction:column;gap:8px;}
-.opt{padding:11px 14px;border-radius:10px;border:2px solid var(--border);font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;background:var(--card2);color:var(--text);text-align:left;transition:all .2s;}
+.opt{padding:11px 14px;border-radius:10px;border:2px solid var(--border);font-family:inherit;font-size:.84rem;font-weight:700;cursor:pointer;background:var(--card2);color:var(--text);text-align:left;transition:all .2s;word-break:keep-all;line-height:1.5;}
 .opt:active{transform:scale(.98);}
 .opt.ok{border-color:var(--green);background:#064e3b;color:var(--green);}
 .opt.err{border-color:var(--red);background:#450a0a;color:var(--red);}
 .opt.reveal{border-color:var(--green);background:#064e3b;color:var(--green);}
 .opt:disabled{cursor:default;}
-.gq-fb{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:.82rem;font-weight:700;display:none;}
-.gq-fb.show{display:block;}
-.gq-fb.ok{background:#064e3b;color:var(--green);}
-.gq-fb.err{background:#450a0a;color:var(--red);}
-.exp-box{background:#1e293b;border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:.8rem;color:var(--muted);line-height:1.7;display:none;}
+.q-fb{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:.82rem;font-weight:700;display:none;}
+.q-fb.show{display:block;}
+.q-fb.ok{background:#064e3b;color:var(--green);}
+.q-fb.err{background:#450a0a;color:var(--red);}
+.exp-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:.8rem;color:var(--muted);line-height:1.7;display:none;}
 .exp-box.show{display:block;}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:99px;border:none;font-family:inherit;font-weight:900;font-size:.88rem;cursor:pointer;transition:all .2s;}
 .btn-p{background:var(--primary);color:#fff;}
 .btn-s{background:var(--card2);color:var(--text);border:2px solid var(--border);}
-.btn-g{background:var(--green);color:#0f172a;}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-.stat-row{display:flex;justify-content:space-around;background:var(--card);border-radius:var(--r);padding:12px;margin-bottom:12px;}
-.stat .n{font-size:1.3rem;font-weight:900;text-align:center;}
-.stat .l{font-size:.72rem;color:var(--muted);text-align:center;}
 .result-banner{background:linear-gradient(135deg,var(--green),#059669);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:12px;}
 .result-banner h2{font-family:'Fredoka One',sans-serif;font-size:1.4rem;margin-bottom:4px;}
-.result-banner p{font-size:.88rem;opacity:.9;}
 </style>
 </head>
 <body>
 <div class="hdr">
   <div class="hdr-top">
-    <h1>✏️ 예문 & 문법</h1>
+    <h1>🧩 단원평가</h1>
     <div class="score-chip">⭐ <span id="scoreNum">0</span>점</div>
   </div>
   <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
 </div>
 
 <div class="nav">
-  <button class="nav-btn on" onclick="goSec('fillL1')">✏️ L1 빈칸</button>
-  <button class="nav-btn" onclick="goSec('fillL2')">✏️ L2 빈칸</button>
-  <button class="nav-btn" onclick="goSec('gramL1')">📐 L1 문법개념</button>
-  <button class="nav-btn" onclick="goSec('gramL2')">📐 L2 문법개념</button>
-  <button class="nav-btn" onclick="goSec('gqL1')">🧩 L1 문법퀴즈</button>
-  <button class="nav-btn" onclick="goSec('gqL2')">🧩 L2 문법퀴즈</button>
+  <button class="nav-btn on" onclick="goSec('q1')">🔵 L1 단원평가</button>
+  <button class="nav-btn" onclick="goSec('q2')">🟣 L2 단원평가</button>
+  <button class="nav-btn" onclick="goSec('qMix')">🔀 랜덤 혼합</button>
 </div>
 
-<!-- ─── L1 FILL ─── -->
-<div class="sec on" id="sec-fillL1">
-  <div class="sec-title">✏️ L1 예문 빈칸 채우기</div>
-  <div id="fillL1Area"></div>
-  <div class="btn-row">
-    <button class="btn btn-p" onclick="checkAllFill('L1')">✅ 전체 채점</button>
-    <button class="btn btn-s" onclick="resetFill('L1')">🔄 초기화</button>
-  </div>
-</div>
-
-<!-- ─── L2 FILL ─── -->
-<div class="sec" id="sec-fillL2">
-  <div class="sec-title">✏️ L2 예문 빈칸 채우기</div>
-  <div id="fillL2Area"></div>
-  <div class="btn-row">
-    <button class="btn btn-p" onclick="checkAllFill('L2')">✅ 전체 채점</button>
-    <button class="btn btn-s" onclick="resetFill('L2')">🔄 초기화</button>
-  </div>
-</div>
-
-<!-- ─── L1 GRAMMAR CONCEPT ─── -->
-<div class="sec" id="sec-gramL1">
-  <div class="sec-title">📐 L1 문법 개념</div>
-
-  <div class="concept-card">
-    <h3>① to부정사의 형용사적 용법</h3>
-    <div class="rule-box">
-      <strong>형태:</strong> 「to+동사원형」<br>
-      <strong>의미:</strong> '~할', '~하는' → 명사를 뒤에서 수식<br>
-      <strong>어순:</strong> 명사/대명사 + to부정사
-    </div>
-    <div class="ex-box">I have homework <strong>to do</strong>.<div class="ex-ko">나는 해야 할 숙제가 있다.</div></div>
-    <div class="ex-box">She gave me some food <strong>to eat</strong>.<div class="ex-ko">그녀는 나에게 먹을 음식을 좀 주었다.</div></div>
-    <div class="ex-box">It is time <strong>to go</strong> to school.<div class="ex-ko">학교에 갈 시간이다.</div></div>
-    <div class="ex-box">I had many chances <strong>to see</strong> dolphins.<div class="ex-ko">나는 돌고래를 볼 기회가 많았다.</div></div>
-    <div class="rule-box" style="margin-top:10px;">
-      ⚠️ 전치사가 있는 경우: to부정사 <strong>뒤에 전치사</strong>를 씀<br>
-      I need a pen <strong>to write with</strong>. (쓸 펜)
-    </div>
-  </div>
-
-  <div class="concept-card">
-    <h3>② make + 목적어 + 형용사 (5형식)</h3>
-    <div class="rule-box">
-      <strong>형태:</strong> 「주어 + make + 목적어 + 형용사」<br>
-      <strong>의미:</strong> '(목적어)를 ~하게 만들다'<br>
-      ⚠️ 목적격 보어 자리: 형용사 O / 부사 X
-    </div>
-    <div class="ex-box">The novel <strong>made</strong> me <strong>sad</strong>. (O)<div class="ex-ko">그 소설은 나를 슬프게 만들었다.</div></div>
-    <div class="ex-box">The movie <strong>made</strong> me <strong>sadly</strong>. (X)<div class="ex-ko">→ sadly는 부사 → sad로 고쳐야 함</div></div>
-    <div class="ex-box">Love <strong>makes</strong> everything <strong>beautiful</strong>.<div class="ex-ko">사랑은 모든 것을 아름답게 만든다.</div></div>
-    <div class="rule-box" style="margin-top:10px;">
-      <strong>5형식 보어 종류:</strong><br>
-      • 형용사: make us emotional<br>
-      • to부정사: want you to apologize<br>
-      • 분사: heard people shouting
-    </div>
-  </div>
-</div>
-
-<!-- ─── L2 GRAMMAR CONCEPT ─── -->
-<div class="sec" id="sec-gramL2">
-  <div class="sec-title">📐 L2 문법 개념</div>
-
-  <div class="concept-card">
-    <h3>① 간접의문문 (의문사 있는 경우)</h3>
-    <div class="rule-box">
-      <strong>일반 의문문:</strong> 의문사 + do/does + 주어 + 동사원형?<br>
-      <strong>간접의문문:</strong> 의문사 + <strong>주어 + 동사</strong> (어순 바뀜!)<br>
-      ⚠️ do/does/did 없애고 동사 시제 맞추기
-    </div>
-    <div class="ex-box">Where <u>is</u> the boy? → I want to know <strong>where the boy is</strong>.<div class="ex-ko">나는 그 소년이 어디에 있는지 알고 싶어.</div></div>
-    <div class="ex-box">What <u>did</u> you eat? → Tell me <strong>what you ate</strong>.<div class="ex-ko">점심으로 무엇을 먹었는지 말해 줘.</div></div>
-    <div class="rule-box" style="margin-top:10px;">
-      ⚠️ 의문사가 <strong>주어</strong>인 경우 → 「의문사+동사」그대로<br>
-      Tell me <strong>who called</strong> you. (who가 주어)
-    </div>
-  </div>
-
-  <div class="concept-card">
-    <h3>② want + 목적어 + to부정사</h3>
-    <div class="rule-box">
-      <strong>형태:</strong> 주어 + want + 목적어 + to부정사<br>
-      <strong>의미:</strong> '(목적어)가 ~하기를 원하다'<br>
-      <strong>부정:</strong> want + 목적어 + <strong>not</strong> to부정사
-    </div>
-    <div class="ex-box"><strong>I want you to help</strong> me.<div class="ex-ko">나는 네가 나를 도와주길 원해.</div></div>
-    <div class="ex-box">My mom <strong>wants me to study</strong> hard.<div class="ex-ko">엄마는 내가 열심히 공부하기를 원하셔.</div></div>
-    <div class="ex-box">My teacher <strong>wants me not to be</strong> late.<div class="ex-ko">선생님은 내가 늦지 않기를 원하신다.</div></div>
-    <div class="rule-box" style="margin-top:10px;">
-      <strong>3형식 vs 5형식:</strong><br>
-      • I <strong>want to</strong> save the Earth. (3형식 – 목적어=to부정사)<br>
-      • I <strong>want you to</strong> save the Earth. (5형식 – 목적어=you)
-    </div>
-  </div>
-
-  <div class="concept-card">
-    <h3>③ 의문사 + to부정사</h3>
-    <div class="rule-box">
-      <strong>형태:</strong> 의문사(what/how/where/when/which) + to부정사<br>
-      <strong>역할:</strong> 명사처럼 주어·목적어·보어 역할<br>
-      <strong>바꾸기:</strong> 의문사 + 주어 + should/can + 동사원형
-    </div>
-    <div class="ex-box"><strong>What to do</strong> here is difficult. = what I should do<div class="ex-ko">여기서 무엇을 해야 할지 어렵다.</div></div>
-    <div class="ex-box">Can you tell me <strong>how to park</strong> a car?<div class="ex-ko">자동차를 주차하는 법을 알려줄 수 있니?</div></div>
-    <div class="rule-box" style="margin-top:8px;">⚠️ <strong>why + to부정사</strong>는 쓰지 않는다!</div>
-  </div>
-</div>
-
-<!-- ─── L1 GRAMMAR QUIZ ─── -->
-<div class="sec" id="sec-gqL1">
-  <div class="sec-title">🧩 L1 문법 퀴즈</div>
+<div class="sec on" id="sec-q1">
+  <div class="sec-title">🔵 Lesson 1 단원평가</div>
   <div class="stat-row">
-    <div class="stat"><div class="n" id="gq1Correct">0</div><div class="l">정답</div></div>
-    <div class="stat"><div class="n" id="gq1Wrong">0</div><div class="l">오답</div></div>
-    <div class="stat"><div class="n" id="gq1Left">-</div><div class="l">남음</div></div>
+    <div class="stat"><div class="n" id="s1c">0</div><div class="l">정답</div></div>
+    <div class="stat"><div class="n" id="s1w">0</div><div class="l">오답</div></div>
+    <div class="stat"><div class="n" id="s1l">-</div><div class="l">남음</div></div>
   </div>
-  <div id="gqL1Area"></div>
+  <div id="q1Area"></div>
 </div>
 
-<!-- ─── L2 GRAMMAR QUIZ ─── -->
-<div class="sec" id="sec-gqL2">
-  <div class="sec-title">🧩 L2 문법 퀴즈</div>
+<div class="sec" id="sec-q2">
+  <div class="sec-title">🟣 Lesson 2 단원평가</div>
   <div class="stat-row">
-    <div class="stat"><div class="n" id="gq2Correct">0</div><div class="l">정답</div></div>
-    <div class="stat"><div class="n" id="gq2Wrong">0</div><div class="l">오답</div></div>
-    <div class="stat"><div class="n" id="gq2Left">-</div><div class="l">남음</div></div>
+    <div class="stat"><div class="n" id="s2c">0</div><div class="l">정답</div></div>
+    <div class="stat"><div class="n" id="s2w">0</div><div class="l">오답</div></div>
+    <div class="stat"><div class="n" id="s2l">-</div><div class="l">남음</div></div>
   </div>
-  <div id="gqL2Area"></div>
+  <div id="q2Area"></div>
+</div>
+
+<div class="sec" id="sec-qMix">
+  <div class="sec-title">🔀 랜덤 혼합 모드</div>
+  <div class="stat-row">
+    <div class="stat"><div class="n" id="sMc">0</div><div class="l">정답</div></div>
+    <div class="stat"><div class="n" id="sMw">0</div><div class="l">오답</div></div>
+    <div class="stat"><div class="n" id="sMl">-</div><div class="l">남음</div></div>
+  </div>
+  <div id="qMixArea"></div>
 </div>
 
 <script>
-// ─── STATE ───
 let totalScore=0;
 function addScore(n){ totalScore+=n; document.getElementById('scoreNum').textContent=totalScore; }
 function setProgress(d,t){ document.getElementById('progFill').style.width=(t?Math.round(d/t*100):0)+'%'; }
+
 function goSec(id){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('sec-'+id).classList.add('on');
   event.currentTarget.classList.add('on');
-  if(id==='gqL1') initGQ(1);
-  if(id==='gqL2') initGQ(2);
-  if(id==='fillL1') renderFill('L1');
-  if(id==='fillL2') renderFill('L2');
+  if(id==='q1') initQ('1');
+  if(id==='q2') initQ('2');
+  if(id==='qMix') initQ('Mix');
 }
 
-// ─── FILL DATA ───
-const FILL_L1 = [
-  { ko:"나는 큰 거북이 한 마리를 수족관에서 보았다.", en:"I saw a big turtle in the ___.", ans:"aquarium", hint:"a_u_r_u_" },
-  { ko:"우리는 그 이야기를 들었을 때, 다 같이 동시에 웃었다.", en:"When we heard the story, we all laughed ___.", ans:"at the same time", hint:"at the ~~~" },
-  { ko:"우리 엄마는 작년에 여행 블로그를 시작하셨다.", en:"My mom started a travel ___ last year.", ans:"blog", hint:"b___" },
-  { ko:"결혼식은 이 건물에서 열렸다.", en:"The wedding ___ was held in this building.", ans:"ceremony", hint:"c_r___ny" },
-  { ko:"나는 스페인을 방문할 기회가 있었다.", en:"I had a ___ to visit Spain.", ans:"chance", hint:"ch___e" },
-  { ko:"아이들이 청소를 도왔다.", en:"The children helped with the ___.", ans:"cleanup", hint:"cl___up" },
-  { ko:"우리는 돌고래를 보러 보트 여행을 했다.", en:"We took a boat trip to see the ___s.", ans:"dolphins", hint:"d___ins" },
-  { ko:"그녀는 슬픈 영화를 볼 때 항상 감정적이 된다.", en:"She always gets ___ during sad movies.", ans:"emotional", hint:"e_oti___l" },
-  { ko:"많은 식물들이 지구 온난화 때문에 멸종 위기에 처해 있다.", en:"Many plants are ___ because of global warming.", ans:"endangered", hint:"en___ered" },
-  { ko:"그 남자는 물고기를 잡기 위해 고기잡이 그물을 물에 던졌다.", en:"The man threw his ___ into the water.", ans:"fishing net", hint:"f___ing n__" },
-  { ko:"새로운 나라로 여행하는 것은 항상 멋진 경험이다.", en:"Traveling to new countries is always a great ___.", ans:"experience", hint:"e___ience" },
-  { ko:"지구의 날씨는 각 지역마다 다르다.", en:"___ weather is different in each place.", ans:"Global", hint:"Gl___l" },
-  { ko:"그 사람은 계속 살아남을 수 없다.", en:"These plants cannot ___ without water.", ans:"survive", hint:"su___ve" },
-  { ko:"많은 사람들이 스마트폰으로 인터넷을 검색한다.", en:"Many people ___ the Internet on their smartphone.", ans:"search", hint:"s___ch" },
-];
-const FILL_L2 = [
-  { ko:"공항에서 호텔까지 가는 버스가 있다.", en:"There is a bus from the ___ to the hotel.", ans:"airport", hint:"ai___rt" },
-  { ko:"그녀는 자신의 실수에 대해 사과했다.", en:"She ___ for her mistake.", ans:"apologized", hint:"apol___ized" },
-  { ko:"그 기차의 도착은 정시에 이루어졌다.", en:"The ___ of the train was on time.", ans:"arrival", hint:"arr___al" },
-  { ko:"나는 한국의 수도인 서울을 방문하고 싶다.", en:"I want to visit Seoul, the ___ of South Korea.", ans:"capital", hint:"cap___al" },
-  { ko:"우리는 학교에서 특별한 날에 평상복을 입는다.", en:"We wear ___ clothes on special days at school.", ans:"casual", hint:"c___al" },
-  { ko:"동물은 소리를 통해서 서로 의사소통을 한다.", en:"Animals ___ with each other through sounds.", ans:"communicate", hint:"comm___cate" },
-  { ko:"그 기계는 제대로 작동하고 있지 않다.", en:"The machine isn't working ___.", ans:"correctly", hint:"cor___tly" },
-  { ko:"그 영화는 내가 예상했던 것과 다르게 끝났다.", en:"The movie ended ___ than I expected.", ans:"differently", hint:"diff___ntly" },
-  { ko:"Sally는 자신의 메시지에 하트 이모지를 사용하는 것을 좋아한다.", en:"Sally loves using heart ___s in her messages.", ans:"emoji", hint:"em___" },
-  { ko:"미소는 행복의 표현이다.", en:"A smile is an ___ of happiness.", ans:"expression", hint:"ex___sion" },
-  { ko:"나의 부모님은 크리스마스 선물을 나에게 주셨다.", en:"My parents gave me a ___ for Christmas.", ans:"gift", hint:"g__t" },
-  { ko:"게다가, 그 건물에는 체육관이 있다.", en:"-___, there is a gym in the building.", ans:"In addition", hint:"In a___ion" },
-  { ko:"나는 그 농담의 의미를 이해하지 못했다.", en:"I didn't understand the ___ of the joke.", ans:"meaning", hint:"m___ing" },
-  { ko:"그녀는 내가 화났다고 생각했지만, 그것은 단지 오해였다.", en:"She thought I was angry, but it was just a ___.", ans:"misunderstanding", hint:"mis___ding" },
-  { ko:"그들은 긴 여행 후에 아마 피곤할 것이다.", en:"They are ___ tired after the long trip.", ans:"probably", hint:"pro___bly" },
-  { ko:"그 질문을 한 번 더 말해 줄래요?", en:"Can you ___ the question, please?", ans:"repeat", hint:"re___at" },
-  { ko:"그녀는 배고플 때 예민해진다.", en:"She gets ___ when she's hungry.", ans:"sensitive", hint:"sen___ive" },
-  { ko:"그 단어의 철자를 천천히 말해 주세요.", en:"Please ___ the word slowly.", ans:"spell", hint:"sp___" },
-  { ko:"나는 그녀가 내 험담을 했다는 것을 믿을 수 없다.", en:"I can't believe that she talked ___ my back.", ans:"behind", hint:"beh___" },
-  { ko:"나는 그들이 그 영화를 어떻게 만들었는지 궁금하다.", en:"I ___ how they made that movie.", ans:"wonder", hint:"won___" },
-];
-
-function renderFill(lesson){
-  const data = lesson==='L1' ? FILL_L1 : FILL_L2;
-  const area = document.getElementById('fill'+lesson+'Area');
-  const colors = lesson==='L1' ? 'b1' : 'b2';
-  area.innerHTML = data.map((q,i)=>`
-    <div class="fill-card" id="fill${lesson}-${i}">
-      <div class="fill-num"><span class="badge ${colors}">${lesson}</span> ${i+1} / ${data.length}</div>
-      <div class="fill-ko">${q.ko}</div>
-      <div class="fill-en">${q.en.replace('___',`<input class="blank" id="bi${lesson}${i}" placeholder="${q.hint}" autocomplete="off" autocorrect="off" spellcheck="false">`)}</div>
-      <div class="fill-feedback" id="ff${lesson}${i}"></div>
-    </div>
-  `).join('');
-}
-
-function checkAllFill(lesson){
-  const data = lesson==='L1' ? FILL_L1 : FILL_L2;
-  let correct=0;
-  data.forEach((q,i)=>{
-    const inp = document.getElementById('bi'+lesson+i);
-    const fb = document.getElementById('ff'+lesson+i);
-    if(!inp) return;
-    const val = inp.value.trim().toLowerCase();
-    const ans = q.ans.toLowerCase();
-    if(val===ans){
-      inp.classList.remove('err'); inp.classList.add('ok');
-      fb.textContent='✅ 정답!'; fb.className='fill-feedback show ok';
-      correct++;
-    } else {
-      inp.classList.remove('ok'); inp.classList.add('err');
-      fb.textContent=`❌ 정답: ${q.ans}`; fb.className='fill-feedback show err';
-    }
-  });
-  addScore(correct*5);
-  alert(`채점 완료! ${correct}/${data.length} 정답 (+${correct*5}점)`);
-}
-
-function resetFill(lesson){
-  const data = lesson==='L1' ? FILL_L1 : FILL_L2;
-  data.forEach((q,i)=>{
-    const inp = document.getElementById('bi'+lesson+i);
-    const fb = document.getElementById('ff'+lesson+i);
-    if(inp){ inp.value=''; inp.classList.remove('ok','err'); }
-    if(fb){ fb.className='fill-feedback'; }
-  });
-}
-
-// ─── GRAMMAR QUIZ DATA ───
-const GQ_L1 = [
+// ─── LESSON 1 QUIZ DATA ───
+const Q1 = [
   {
-    q:"나는 해야 할 숙제가 있다.\nI have homework ___.",
-    opts:["do","doing","to do","done"],
-    ans:2, exp:"to부정사의 형용사적 용법: homework(명사)를 뒤에서 수식. '해야 할' → to do"
+    badge:'b1', type:'어휘',
+    q:"다음 빈칸에 공통으로 들어갈 말은?\n• Lisa will ___ part in the dance contest.\n• I hear you're going to ___ a trip to Jeju-do.",
+    opts:["do","play","make","take","like"], ans:3,
+    exp:"take part in = ~에 참가하다 / take a trip = 여행을 가다"
   },
   {
-    q:"She gave me some food ___.\n그녀는 나에게 먹을 음식을 좀 주었다.",
-    opts:["eat","eating","to eat","eaten"],
-    ans:2, exp:"food(명사)를 수식하는 to부정사: food to eat = 먹을 음식"
+    badge:'b1', type:'영영',
+    q:"다음 영영 풀이에 해당하는 단어는?\n\"to remain alive or continue to live\"",
+    opts:["return","hold","survive","search","wave"], ans:2,
+    exp:"survive = 살아남다 (to remain alive or continue to live)"
   },
   {
-    q:"It is time ___ to school.\n학교에 갈 시간이다.",
-    opts:["go","going","to go","goes"],
-    ans:2, exp:"time(명사) 뒤 to부정사: time to go = 갈 시간"
+    badge:'b1', type:'어휘',
+    q:"빈칸에 들어갈 말은?\nI grew up in Jeju-do, so I had many ___ to see dolphins.",
+    opts:["issues","skills","chances","members","errands"], ans:2,
+    exp:"chance = 기회 (a good time for you to do something)"
   },
   {
-    q:"다음 중 어법상 틀린 것은?\nThe ceremony made all the members ___ quite emotional.",
-    opts:["feel","felt","to feel","feeling"],
-    ans:0, exp:"make+O+형용사(원형): made members feel → 5형식. emotional은 형용사로 목적격 보어"
+    badge:'b1', type:'대화',
+    q:"자연스러운 대화가 되도록 (A)~(C)를 바르게 배열한 것은?\n[A] Just do your best. You'll do great.\n[B] Really? I hope so, too, but I'm nervous.\n[C] I hope you finish the race.",
+    opts:["(A)-(C)-(B)","(B)-(A)-(C)","(B)-(C)-(A)","(C)-(B)-(A)","(C)-(A)-(B)"], ans:4,
+    exp:"(C) 희망 표현 → (B) 걱정 표현 → (A) 안심시키기 순서"
   },
   {
-    q:"The novel made me ___.\n그 소설은 나를 슬프게 만들었다.",
-    opts:["sad","sadly","sadness","sadden"],
-    ans:0, exp:"make+목적어+형용사: 목적격 보어 자리에는 형용사(sad)! 부사(sadly)는 X"
+    badge:'b1', type:'대화',
+    q:"빈칸에 들어갈 말은?\nA: A big exam is coming up. I'm worried.\nB: ___",
+    opts:["That's a good idea.","I'm afraid, but I can't.","That's OK. I'm prepared.","OK. I'll give it a try, then.","Don't worry. You'll do all right."], ans:4,
+    exp:"걱정하는 상대방을 안심시키는 표현: Don't worry. You'll do all right."
   },
   {
-    q:"I need a pen ___.\n나는 쓸 펜이 하나 필요하다.",
-    opts:["write","writing","to write","to write with"],
-    ans:3, exp:"pen을 수식하는 to부정사. write with a pen이므로 전치사 with가 뒤에 필요: a pen to write with"
+    badge:'b1', type:'대화',
+    q:"다음 중 짝지어진 대화가 자연스럽지 않은 것은?",
+    opts:[
+      "A: I have a math test. / B: Good luck. I hope you do well on it.",
+      "A: I have a terrible cold. / B: I'm so sorry. I hope you feel better soon.",
+      "A: I hope you have a great time in Tokyo. / B: Oh, don't worry. It's a short flight.",
+      "A: Today is the first day of school. / B: Good, but I'm a little nervous.",
+      "A: I have a school club interview. / B: Don't worry too much. You'll do all right."
+    ], ans:2,
+    exp:"③ A가 희망을 표현했는데 B가 '걱정하지 마'라고 응답하는 것은 어색함"
   },
   {
-    q:"다음 빈칸에 들어갈 말은?\nShe has enough time ___ to jog.",
-    opts:["for","to","of","with"],
-    ans:1, exp:"enough time to jog: 시간(명사)를 수식하는 형용사적 to부정사"
+    badge:'b1', type:'독해',
+    q:"다음 글의 내용과 일치하지 않는 것은?\n[지문] Many dolphins get sick or even die because of plastic waste and fishing nets, so cleaning up beaches is important. There was a beach cleanup party today, and I took part in it. Cleaning up the beach was not difficult, but I enjoyed it. Oh, I saw Aunt Sumi there. She is also a member of Dolphin Lovers. What a small world!",
+    opts:[
+      "돌고래들이 플라스틱 쓰레기로 아프거나 죽는다.",
+      "해변 청소 파티가 오늘 있었다.",
+      "해변 청소는 어렵지 않았다.",
+      "Sumi 이모도 Dolphin Lovers 회원이다.",
+      "글쓴이는 Sumi 이모를 만날 것을 미리 알고 있었다."
+    ], ans:4,
+    exp:"What a small world! → 우연히 만났음을 뜻함. 미리 알고 있었던 것이 아님."
   },
   {
-    q:"Exercising regularly makes people ___.\n규칙적으로 운동하는 것은 사람들을 건강하게 만든다.",
-    opts:["healthy","healthily","health","more healthily"],
-    ans:0, exp:"make+목적어+형용사: people(목적어) healthy(형용사). 부사 healthily는 X"
+    badge:'b1', type:'독해',
+    q:"윗글을 읽고 답할 수 없는 질문은?",
+    opts:[
+      "Why do many dolphins get sick?",
+      "Why should people clean up beaches?",
+      "What event did 'I' take part in?",
+      "Why does Aunt Sumi like dolphins?",
+      "Where did 'I' see Aunt Sumi?"
+    ], ans:3,
+    exp:"④ Aunt Sumi가 왜 돌고래를 좋아하는지는 본문에 나와 있지 않음."
   },
   {
-    q:"다음 중 어법상 옳은 것은?",
-    opts:["The movie made me sadly.","Love makes everything beautiful.","She wants someone help her.","I have no time going there."],
-    ans:1, exp:"Love makes everything beautiful. → make+목적어(everything)+형용사(beautiful) ✅"
+    badge:'b1', type:'문법',
+    q:"다음 빈칸에 들어갈 말은?\nLucy needs some water ___.\n루시는 마실 물이 필요하다.",
+    opts:["drink","drinking","to drink","for drink","drank"], ans:2,
+    exp:"명사(water)를 수식하는 형용사적 to부정사: water to drink = 마실 물"
   },
   {
-    q:"We need tools ___ this broken chair.\n우리는 이 부서진 의자를 고칠 도구가 필요하다.",
-    opts:["fix","fixing","to fix","fixed"],
-    ans:2, exp:"tools(명사) 뒤 형용사적 to부정사: tools to fix = 고칠 도구"
+    badge:'b1', type:'문법',
+    q:"다음 우리말을 영어로 바르게 옮긴 것은?\n그 영화는 Jenny를 행복하게 했다.",
+    opts:[
+      "The movie made Jenny happy.",
+      "The movie made Jenny happily.",
+      "The movie made Jenny was happy.",
+      "The movie made happy Jenny.",
+      "The movie made Jenny being happy."
+    ], ans:0,
+    exp:"make+목적어(Jenny)+형용사(happy): The movie made Jenny happy. ✅"
+  },
+  {
+    badge:'b1', type:'독해',
+    q:"빈칸 (A)와 (B)에 들어갈 말이 바르게 짝지어진 것은?\n[지문] I grew up in Jeju-do, so I had many chances (A)___ dolphins. I joined an NGO, Dolphin Lovers. It does various activities such as cleaning up beaches and (B)___ dolphins.",
+    opts:["see – to help","saw – helped","saw – helping","to see – help","to see – helping"], ans:4,
+    exp:"(A) chances + to부정사 = to see / (B) such as + ~ing = helping"
+  },
+  {
+    badge:'b1', type:'문법',
+    q:"밑줄 친 부분의 쓰임이 나머지 넷과 다른 것은?",
+    opts:[
+      "It is time to brush my teeth.",
+      "They allowed us to join them.",
+      "This is another chance to try.",
+      "Do you want something to eat?",
+      "I don't have much money to spend."
+    ], ans:1,
+    exp:"②만 부사적 용법(목적: ~하기 위해). 나머지는 형용사적 용법(명사 수식)"
   },
 ];
 
-const GQ_L2 = [
+// ─── LESSON 2 QUIZ DATA ───
+const Q2 = [
   {
-    q:"나는 그들이 언제 떠났는지 모른다.\nI don't know ___.",
-    opts:["when they left","when did they leave","when they did leave","they left when"],
-    ans:0, exp:"간접의문문 어순: 의문사+주어+동사. when they left ✅ (did 없앰, left로 과거시제)"
+    badge:'b2', type:'어휘',
+    q:"다음 빈칸에 공통으로 들어갈 말은?\n• When you arrive at home, ___ me.\n• Read the ___ carefully, and answer the questions.",
+    opts:["text","list","mark","grade","spell"], ans:0,
+    exp:"text = 문자를 보내다 / read the text = 지문을 읽다"
   },
   {
-    q:"Do you know ___ the post office is?\n너는 우체국이 어디에 있는지 아니?",
-    opts:["where","where is","that where","where does"],
-    ans:0, exp:"간접의문문: where(의문사)+the post office(주어)+is(동사). 어순 그대로"
+    badge:'b2', type:'영영',
+    q:"다음 영영 풀이에 해당하는 단어는?\n\"to say that you are sorry for doing something wrong\"",
+    opts:["mean","explain","apologize","express","communicate"], ans:2,
+    exp:"apologize = 사과하다"
   },
   {
-    q:"Tell me ___.\n내가 무엇을 해야 할지 말해 줘.",
-    opts:["what to do","what do I","what should I do","what I do"],
-    ans:0, exp:"의문사+to부정사: what to do = 무엇을 해야 할지 (= what I should do)"
+    badge:'b2', type:'어휘',
+    q:"다음 중 영어 단어의 의미가 바르지 않은 것은?",
+    opts:[
+      "probably – 아마도",
+      "careful – 주의 깊은",
+      "casual – 일상적인",
+      "sensitive – 민감한",
+      "misunderstanding – 의사소통"
+    ], ans:4,
+    exp:"misunderstanding = 오해 (의사소통은 communication)"
   },
   {
-    q:"I wonder why ___ so sad.\n나는 왜 그가 그렇게 슬픈지 궁금하다.",
-    opts:["does he look","he looks","he look","is he looking"],
-    ans:1, exp:"간접의문문: why + 주어(he) + 동사(looks). why he looks ✅"
+    badge:'b2', type:'대화',
+    q:"자연스러운 대화가 되도록 (A)~(C)를 바르게 배열한 것은?\n[A] How do you spell it?\n[B] It's naan.\n[C] N-a-a-n. Naan.",
+    opts:["(A)-(C)-(B)","(B)-(A)-(C)","(B)-(C)-(A)","(C)-(A)-(B)","(C)-(B)-(A)"], ans:1,
+    exp:"(B) 이름 알려주기 → (A) 철자 묻기 → (C) 철자 알려주기"
   },
   {
-    q:"My mom wants me ___ hard.\n엄마는 내가 열심히 공부하기를 원하셔.",
-    opts:["study","studied","to study","studying"],
-    ans:2, exp:"want+목적어(me)+to부정사: wants me to study ✅"
+    badge:'b2', type:'대화',
+    q:"빈칸에 들어갈 말은?\nA: What's your name?\nB: My name is Olivia.\nA: ___\nB: Sure. I said, \"Olivia.\"",
+    opts:[
+      "How do you spell it?",
+      "What can I do for you?",
+      "Do you have special plans?",
+      "Can you please say that again?",
+      "Can you show me something else?"
+    ], ans:3,
+    exp:"B가 이름을 다시 말해준 것으로 보아 A가 다시 말해 달라고 요청했음: Can you please say that again?"
   },
   {
+    badge:'b2', type:'대화',
+    q:"빈칸에 들어갈 말은?\nA: You're all set. Just go to gate 13 by 10:00.\nB: Can you please say the gate number again?\nA: ___. You need to be there by 10.\nB: Got it. Thank you very much.",
+    opts:[
+      "You can't miss it.",
+      "I'm sorry, but I can't.",
+      "Sure. I said, \"gate 13.\"",
+      "You can say that again.",
+      "Yes. It's on the second floor."
+    ], ans:2,
+    exp:"다시 알려주는 표현: Sure. I said, \"gate 13.\""
+  },
+  {
+    badge:'b2', type:'독해',
+    q:"다음 대화에서 Emma에 관한 내용과 일치하는 것은?\n[지문] A: Hi, Emma. I didn't expect to see you here at the airport. B: Hi, Jihan. My parents and I just said goodbye to Uncle Ted. He was visiting us, but he is going back to Ottawa just now. A: He is going back to where? B: Ottawa. A: How do you spell it? B: O-t-t-a-w-a. It's the capital of Canada. Anyway, he is getting married there next month. A: Really? Are you going to go to his wedding? B: Well, my parents will, but I don't think I can.",
+    opts:[
+      "Emma와 지한은 공항에서 만나기로 약속했다.",
+      "Emma는 막 삼촌과 작별 인사를 했다.",
+      "Emma의 삼촌은 캐나다에서 결혼식을 했다.",
+      "Emma는 부모님과 캐나다로 여행을 갈 예정이다.",
+      "Emma는 삼촌으로부터 축하 문자 메시지를 받았다."
+    ], ans:1,
+    exp:"② Emma는 방금 Ted 삼촌에게 작별 인사를 했다. (My parents and I just said goodbye to Uncle Ted)"
+  },
+  {
+    badge:'b2', type:'문법',
     q:"다음 중 어법상 틀린 것은?",
-    opts:["Tell me where Jina lives.","I want to know who called me.","Tell me where does she work.","I wonder why he is so busy."],
-    ans:2, exp:"Tell me where does she work. → 간접의문문 어순 오류. where she works로 고쳐야 함"
+    opts:[
+      "I wonder why he is so busy.",
+      "Tell me where does she work.",
+      "I want to know who called me.",
+      "I don't know how old her sister is.",
+      "Do you know when the movie starts?"
+    ], ans:1,
+    exp:"Tell me where does she work. → 간접의문문 어순 오류. where she works로 고쳐야 함"
   },
   {
-    q:"Can you tell me ___ a car?\n내게 자동차를 주차하는 법을 알려줄 수 있니?",
-    opts:["how to park","how park","how parking","how I park"],
-    ans:0, exp:"how+to부정사: how to park = 주차하는 법 (= how I should park)"
+    badge:'b2', type:'문법',
+    q:"다음 중 어법상 옳은 것을 모두 고른 것은?\nⓐ Sue doesn't want them to read her report.\nⓑ Do you know when does the train leave?\nⓒ I want she to study hard for the test.\nⓓ Tell me why she left so early.\nⓔ Mom wants Tom to clean his room.",
+    opts:["ⓐ, ⓒ","ⓑ, ⓓ","ⓐ, ⓒ, ⓔ","ⓐ, ⓓ, ⓔ","ⓑ, ⓒ, ⓓ"], ans:3,
+    exp:"ⓑ when does → when the train leaves / ⓒ want she → want her"
   },
   {
-    q:"나는 네가 나에게 사과해 주길 원해.\nI want ___ to me.",
-    opts:["you apologize","you to apologize","that you apologize","you apologizing"],
-    ans:1, exp:"want+목적어(you)+to부정사(to apologize) ✅"
+    badge:'b2', type:'문법',
+    q:"빈칸에 들어갈 말은?\nI want our school ___ safer and cleaner.",
+    opts:["is","to be","being","will be","to being"], ans:1,
+    exp:"want+목적어(our school)+to부정사(to be): ~하기를 원하다"
   },
   {
-    q:"She wants him ___.\n그녀는 그가 그 탁자를 청소하기를 원한다.",
-    opts:["clean the table","to clean the table","cleaning the table","cleans the table"],
-    ans:1, exp:"want+목적어(him)+to부정사(to clean) ✅"
+    badge:'b2', type:'문법',
+    q:"다음 우리말을 영어로 바르게 옮긴 것은?\n너는 그녀가 누구를 좋아하는지 아니?",
+    opts:[
+      "Do you know who she likes?",
+      "Do you know who likes her?",
+      "Do you know she likes who?",
+      "Do you know who does she like?",
+      "Do you know does she like who?"
+    ], ans:0,
+    exp:"간접의문문: Do you know + who she likes? (who = 목적어, 어순: who+주어+동사)"
   },
   {
-    q:"I don't know ___ this paper.\n나는 이 종이로 무엇을 만들어야 할지 모르겠다.",
-    opts:["what to make","what making","what make","to make what"],
-    ans:0, exp:"의문사+to부정사: what to make with this paper ✅"
+    badge:'b2', type:'독해',
+    q:"다음 글 뒤에 이어질 내용으로 알맞은 것은?\n[지문] Texting is the main way of communication for many people these days, especially for teenagers. Do you want to know how you can communicate better through texting? Here are some useful tips.",
+    opts:[
+      "문자 메시지의 장점",
+      "휴대전화 중독의 해결책",
+      "세대 간 소통이 중요한 이유",
+      "십 대들이 전화 통화를 피하는 이유",
+      "문자 메시지로 더 잘 소통하는 방법"
+    ], ans:4,
+    exp:"Here are some useful tips → 문자로 더 잘 소통하는 방법(tips)이 이어짐"
+  },
+  {
+    badge:'b2', type:'독해',
+    q:"밑줄 친 them이 가리키는 것은?\n[지문] You can use expressions like BRT, JK, or LOL when you text your friends. However, be careful with such expressions when you text your teachers or parents. You need to understand that some of <them> may not know the meanings of such expressions.",
+    opts:[
+      "text messages",
+      "teachers or parents",
+      "expressions like BRT, JK, or LOL",
+      "friends",
+      "teenagers"
+    ], ans:1,
+    exp:"them = your teachers or parents (일부는 그런 표현의 의미를 모를 수도 있는 대상)"
+  },
+  {
+    badge:'b2', type:'독해',
+    q:"다음 글의 주제로 알맞은 것은?\n[지문] When we talk with someone, we use not only words but also facial expressions and body language. Sometimes, a little emoji can speak louder than many words. The problem is that not everybody uses emojis in the same way. Some people like to use them a lot, and some don't. In addition, the same emojis can mean different things to different people.",
+    opts:[
+      "Texting is better than talking.",
+      "People use emojis differently.",
+      "Emojis are necessary in texting.",
+      "Misunderstandings can happen all the time.",
+      "The meanings of emojis are easy to understand."
+    ], ans:1,
+    exp:"이모지를 사람마다 다르게 사용한다는 내용: People use emojis differently."
   },
 ];
 
-let gqState = {1:{idx:0, data:[], correct:0, wrong:0}, 2:{idx:0, data:[], correct:0, wrong:0}};
+// ─── ENGINE ───
+let qState = {
+  '1': {idx:0, data:[], correct:0, wrong:0},
+  '2': {idx:0, data:[], correct:0, wrong:0},
+  'Mix': {idx:0, data:[], correct:0, wrong:0},
+};
 
-function initGQ(l){
-  const data = l===1 ? [...GQ_L1] : [...GQ_L2];
-  gqState[l] = {idx:0, data: data.sort(()=>Math.random()-.5), correct:0, wrong:0};
-  renderGQ(l);
+function initQ(l){
+  let data;
+  if(l==='1') data=[...Q1];
+  else if(l==='2') data=[...Q2];
+  else data=[...Q1,...Q2];
+  qState[l]={idx:0, data:data.sort(()=>Math.random()-.5), correct:0, wrong:0};
+  renderQ(l);
 }
 
-function renderGQ(l){
-  const s = gqState[l];
-  const area = document.getElementById('gqL'+l+'Area');
-  document.getElementById('gq'+l+'Correct').textContent = s.correct;
-  document.getElementById('gq'+l+'Wrong').textContent = s.wrong;
+function renderQ(l){
+  const s=qState[l];
+  const area=document.getElementById('q'+l+'Area');
+  const prefix = l==='Mix'?'M':l;
+  document.getElementById('s'+prefix+'c').textContent=s.correct;
+  document.getElementById('s'+prefix+'w').textContent=s.wrong;
 
-  if(s.idx >= s.data.length){
-    const total = s.data.length;
+  if(s.idx>=s.data.length){
+    const total=s.data.length;
     area.innerHTML=`
       <div class="result-banner">
-        <h2>${s.correct>=total*0.8?'🎉':'💪'} ${s.correct}/${total}</h2>
-        <p>${s.correct>=total*0.8?'훌륭해요!':'다시 도전해 봐요!'}</p>
+        <h2>${s.correct>=total*.7?'🎉':'💪'} ${s.correct}/${total}</h2>
+        <p>${s.correct>=total*.7?'잘 했어요!':'다시 도전해 봐요!'} (${Math.round(s.correct/total*100)}%)</p>
       </div>
-      <div class="btn-row"><button class="btn btn-p" onclick="initGQ(${l})">🔄 다시 풀기</button></div>`;
+      <div class="btn-row"><button class="btn btn-p" onclick="initQ('${l}')">🔄 다시 풀기</button></div>`;
     return;
   }
 
-  document.getElementById('gq'+l+'Left').textContent = s.data.length - s.idx;
+  document.getElementById('s'+prefix+'l').textContent=s.data.length-s.idx;
   setProgress(s.idx, s.data.length);
 
-  const q = s.data[s.idx];
-  const optsHTML = q.opts.map((o,i)=>`
-    <button class="opt" onclick="checkGQ(${l},${i},this)">${i+1}. ${o}</button>
+  const q=s.data[s.idx];
+  const nums=['①','②','③','④','⑤'];
+  const opts2=q.opts.map((o,i)=>`
+    <button class="opt" onclick="checkQ('${l}',${i},this)"><span style="color:var(--muted);margin-right:6px;">${nums[i]}</span> ${o}</button>
   `).join('');
 
   area.innerHTML=`
-    <div class="gq-card">
-      <div class="gq-num">${s.idx+1} / ${s.data.length}</div>
-      <div class="gq-q">${q.q.replace(/\n/g,'<br>')}</div>
-      <div class="opts">${optsHTML}</div>
-      <div class="gq-fb" id="gqFb${l}"></div>
-      <div class="exp-box" id="gqExp${l}">${q.exp}</div>
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="q-num">${s.idx+1}/${s.data.length}</span>
+        <span class="badge ${q.badge||'b1'}">${q.badge==='b2'?'L2':'L1'}</span>
+        <span class="q-type">${q.type}</span>
+      </div>
+      <div class="q-text">${q.q.replace(/\[지문\]/g,'').replace(/\n/g,'<br>').replace(/\[([^\]]+)\]/g,'<div class="q-passage">$1</div>')}</div>
+      <div class="opts">${opts2}</div>
+      <div class="q-fb" id="qFb${l}"></div>
+      <div class="exp-box" id="qExp${l}">${q.exp}</div>
     </div>`;
 }
 
-function checkGQ(l, selected, el){
-  const s = gqState[l];
-  const q = s.data[s.idx];
-  document.querySelectorAll(`#gqL${l}Area .opt`).forEach(b=>b.disabled=true);
-  const fb = document.getElementById('gqFb'+l);
-  const exp = document.getElementById('gqExp'+l);
-
+function checkQ(l, selected, el){
+  const s=qState[l];
+  const q=s.data[s.idx];
+  const prefix=l==='Mix'?'M':l;
+  document.querySelectorAll('#q'+l+'Area .opt').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('qFb'+l);
+  const exp=document.getElementById('qExp'+l);
   if(selected===q.ans){
     el.classList.add('ok');
-    fb.textContent='✅ 정답!'; fb.className='gq-fb show ok';
+    fb.textContent='✅ 정답!'; fb.className='q-fb show ok';
     s.correct++; addScore(10);
   } else {
     el.classList.add('err');
-    document.querySelectorAll(`#gqL${l}Area .opt`)[q.ans]?.classList.add('reveal');
-    fb.textContent='❌ 틀렸어요!'; fb.className='gq-fb show err';
+    document.querySelectorAll('#q'+l+'Area .opt')[q.ans]?.classList.add('reveal');
+    fb.textContent='❌ 틀렸어요!'; fb.className='q-fb show err';
     s.wrong++;
   }
   exp.classList.add('show');
-  document.getElementById('gq'+l+'Correct').textContent=s.correct;
-  document.getElementById('gq'+l+'Wrong').textContent=s.wrong;
-
-  setTimeout(()=>{ s.idx++; renderGQ(l); },1600);
+  document.getElementById('s'+prefix+'c').textContent=s.correct;
+  document.getElementById('s'+prefix+'w').textContent=s.wrong;
+  setTimeout(()=>{ s.idx++; renderQ(l); },1800);
 }
 
-// INIT
-renderFill('L1');
-renderFill('L2');
+initQ('1');
 </script>
 </body>
 </html>
