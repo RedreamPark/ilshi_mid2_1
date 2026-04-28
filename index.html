@@ -3,504 +3,524 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>단어 학습 — L1 & L2</title>
+<title>예문 빈칸 + 어법 퀴즈 — L1 & L2</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Fredoka+One&display=swap');
-:root {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --card2: #253347;
-  --primary: #38bdf8;
-  --primary-d: #0284c7;
-  --green: #34d399;
-  --red: #f87171;
-  --yellow: #fbbf24;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --border: #334155;
-  --r: 14px;
+:root{
+  --bg:#0f172a;--card:#1e293b;--card2:#253347;
+  --primary:#a78bfa;--primary-d:#7c3aed;
+  --green:#34d399;--red:#f87171;--yellow:#fbbf24;--cyan:#38bdf8;
+  --text:#f1f5f9;--muted:#94a3b8;--border:#334155;--r:14px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-
-/* HEADER */
-.hdr{background:linear-gradient(135deg,#0ea5e9,#6366f1);padding:14px 16px 12px;position:sticky;top:0;z-index:50;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.hdr{background:linear-gradient(135deg,#7c3aed,#2563eb);padding:14px 16px 12px;position:sticky;top:0;z-index:50;}
 .hdr-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.hdr h1{font-family:'Fredoka One',sans-serif;font-size:1.2rem;flex:1;letter-spacing:.5px;}
-.score-chip{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border-radius:99px;padding:4px 12px;font-size:.82rem;font-weight:700;}
+.hdr h1{font-family:'Fredoka One',sans-serif;font-size:1.2rem;flex:1;}
+.score-chip{background:rgba(255,255,255,.2);border-radius:99px;padding:4px 12px;font-size:.82rem;font-weight:700;}
 .prog-bar{height:6px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;}
 .prog-fill{height:100%;background:#fff;border-radius:99px;transition:width .4s;}
-
-/* NAV TABS */
 .nav{display:flex;gap:6px;padding:12px 14px;overflow-x:auto;scrollbar-width:none;background:var(--card);}
 .nav::-webkit-scrollbar{display:none;}
 .nav-btn{flex-shrink:0;padding:7px 14px;border-radius:99px;border:none;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s;background:var(--card2);color:var(--muted);}
-.nav-btn.on{background:var(--primary);color:#0f172a;}
-
-/* SECTIONS */
-.sec{display:none;padding:14px;}
-.sec.on{display:block;animation:fadeUp .3s;}
+.nav-btn.on{background:var(--primary);color:#fff;}
+.sec{display:none;padding:14px;animation:fadeUp .3s;}
+.sec.on{display:block;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-
-/* SECTION TITLE */
-.sec-title{font-family:'Fredoka One',sans-serif;font-size:1.05rem;color:var(--primary);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.sec-title{font-family:'Fredoka One',sans-serif;font-size:1.05rem;color:var(--primary);margin-bottom:12px;}
 .badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.72rem;font-weight:900;}
-.b1{background:#0c4a6e;color:#38bdf8;}
-.b2{background:#4c1d95;color:#a78bfa;}
+.b1{background:#0c4a6e;color:#38bdf8;}.b2{background:#4c1d95;color:#a78bfa;}
 
-/* WORD CARD (browse) */
-.wcard{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:10px;border:1px solid var(--border);transition:transform .15s;}
-.wcard:active{transform:scale(.98);}
-.wcard-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.wcard-en{font-size:1.1rem;font-weight:900;color:var(--primary);}
-.wcard-ko{font-size:.85rem;color:var(--muted);}
-.wcard-def{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:6px;}
-.wcard-ex{font-size:.82rem;background:var(--card2);border-radius:8px;padding:8px 10px;line-height:1.6;color:#cbd5e1;}
-
-/* MATCH GAME */
-.match-info{font-size:.82rem;color:var(--muted);margin-bottom:10px;}
-.match-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.match-col-title{font-size:.75rem;font-weight:700;color:var(--muted);text-align:center;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
-.match-item{
-  padding:10px 10px;border-radius:10px;border:2px solid var(--border);
-  cursor:pointer;font-size:.82rem;font-weight:700;transition:all .2s;
-  background:var(--card2);text-align:center;min-height:52px;
-  display:flex;align-items:center;justify-content:center;word-break:keep-all;line-height:1.4;
+/* FILL BLANK */
+.fill-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
+.fill-num{font-size:.75rem;font-weight:900;color:var(--muted);margin-bottom:8px;}
+.fill-ko{font-size:.82rem;color:var(--muted);margin-bottom:10px;line-height:1.6;background:var(--card2);border-radius:8px;padding:8px 10px;}
+.fill-en{font-size:.95rem;line-height:2;margin-bottom:10px;font-weight:700;}
+.blank{
+  display:inline-block;min-width:80px;border:none;border-bottom:2px solid var(--primary);
+  background:transparent;font-size:.92rem;font-family:inherit;outline:none;
+  padding:0 4px;color:var(--text);text-align:center;font-weight:700;
 }
-.match-item.sel{border-color:var(--primary);background:#0c4a6e;color:var(--primary);}
-.match-item.ok{border-color:var(--green);background:#064e3b;color:var(--green);pointer-events:none;}
-.match-item.err{border-color:var(--red);background:#450a0a;animation:shk .3s;}
-@keyframes shk{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.match-item.ghost{opacity:0;pointer-events:none;}
+.blank.ok{border-color:var(--green);color:var(--green);}
+.blank.err{border-color:var(--red);color:var(--red);}
+.hint-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.hint-chip{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:.8rem;cursor:pointer;transition:all .2s;}
+.hint-chip:active{background:var(--primary);color:#fff;}
+.hint-chip.used{opacity:.3;pointer-events:none;}
+.fill-feedback{padding:8px 12px;border-radius:8px;font-size:.82rem;font-weight:700;margin-top:6px;display:none;}
+.fill-feedback.show{display:block;}
+.fill-feedback.ok{background:#064e3b;color:var(--green);}
+.fill-feedback.err{background:#450a0a;color:var(--red);}
 
-/* RESULT BANNER */
-.result-banner{background:linear-gradient(135deg,var(--green),#059669);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:12px;}
-.result-banner h2{font-family:'Fredoka One',sans-serif;font-size:1.5rem;margin-bottom:4px;}
-.result-banner p{font-size:.88rem;opacity:.9;}
+/* GRAMMAR CONCEPT */
+.concept-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
+.concept-card h3{font-size:.95rem;font-weight:900;color:var(--cyan);margin-bottom:10px;}
+.rule-box{background:var(--card2);border-left:3px solid var(--primary);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px;font-size:.85rem;line-height:1.8;}
+.rule-box strong{color:var(--primary);}
+.ex-box{background:#1e1b4b;border-radius:8px;padding:10px 12px;margin:6px 0;font-size:.85rem;line-height:1.7;}
+.ex-ko{color:var(--muted);font-size:.78rem;margin-top:2px;}
 
-/* QUIZ */
-.q-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:10px;border:1px solid var(--border);}
-.q-num{font-size:.75rem;font-weight:900;color:var(--muted);margin-bottom:6px;}
-.q-word{font-size:1.2rem;font-weight:900;color:var(--primary);margin-bottom:4px;}
-.q-hint{font-size:.78rem;color:var(--muted);margin-bottom:14px;font-style:italic;line-height:1.5;}
+/* GRAMMAR QUIZ */
+.gq-card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:12px;border:1px solid var(--border);}
+.gq-num{font-size:.75rem;font-weight:900;color:var(--muted);margin-bottom:6px;}
+.gq-q{font-size:.92rem;font-weight:700;line-height:1.7;margin-bottom:12px;color:var(--text);}
+.gq-q .blank-q{display:inline-block;min-width:60px;border-bottom:2px solid var(--cyan);color:var(--cyan);text-align:center;}
 .opts{display:flex;flex-direction:column;gap:8px;}
-.opt{
-  padding:11px 14px;border-radius:10px;border:2px solid var(--border);
-  font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;
-  background:var(--card2);color:var(--text);text-align:left;transition:all .2s;word-break:keep-all;
-}
+.opt{padding:11px 14px;border-radius:10px;border:2px solid var(--border);font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;background:var(--card2);color:var(--text);text-align:left;transition:all .2s;}
 .opt:active{transform:scale(.98);}
 .opt.ok{border-color:var(--green);background:#064e3b;color:var(--green);}
 .opt.err{border-color:var(--red);background:#450a0a;color:var(--red);}
 .opt.reveal{border-color:var(--green);background:#064e3b;color:var(--green);}
 .opt:disabled{cursor:default;}
-.q-feedback{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:.82rem;font-weight:700;display:none;}
-.q-feedback.show{display:block;}
-.q-feedback.ok{background:#064e3b;color:var(--green);}
-.q-feedback.err{background:#450a0a;color:var(--red);}
+.gq-fb{margin-top:10px;padding:10px 12px;border-radius:8px;font-size:.82rem;font-weight:700;display:none;}
+.gq-fb.show{display:block;}
+.gq-fb.ok{background:#064e3b;color:var(--green);}
+.gq-fb.err{background:#450a0a;color:var(--red);}
+.exp-box{background:#1e293b;border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:.8rem;color:var(--muted);line-height:1.7;display:none;}
+.exp-box.show{display:block;}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:99px;border:none;font-family:inherit;font-weight:900;font-size:.88rem;cursor:pointer;transition:all .2s;}
-.btn-p{background:var(--primary);color:#0f172a;}
-.btn-p:active{background:var(--primary-d);}
-.btn-g{background:var(--green);color:#0f172a;}
+.btn-p{background:var(--primary);color:#fff;}
 .btn-s{background:var(--card2);color:var(--text);border:2px solid var(--border);}
+.btn-g{background:var(--green);color:#0f172a;}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
-
-/* STAT BAR */
 .stat-row{display:flex;justify-content:space-around;background:var(--card);border-radius:var(--r);padding:12px;margin-bottom:12px;}
-.stat{text-align:center;}
-.stat .n{font-size:1.3rem;font-weight:900;}
-.stat .l{font-size:.72rem;color:var(--muted);}
-
-/* SCROLL helper */
-.scroll-x{overflow-x:auto;scrollbar-width:none;}
-.scroll-x::-webkit-scrollbar{display:none;}
+.stat .n{font-size:1.3rem;font-weight:900;text-align:center;}
+.stat .l{font-size:.72rem;color:var(--muted);text-align:center;}
+.result-banner{background:linear-gradient(135deg,var(--green),#059669);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:12px;}
+.result-banner h2{font-family:'Fredoka One',sans-serif;font-size:1.4rem;margin-bottom:4px;}
+.result-banner p{font-size:.88rem;opacity:.9;}
 </style>
 </head>
 <body>
-
 <div class="hdr">
   <div class="hdr-top">
-    <h1>📚 단어 학습</h1>
+    <h1>✏️ 예문 & 문법</h1>
     <div class="score-chip">⭐ <span id="scoreNum">0</span>점</div>
   </div>
   <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
 </div>
 
 <div class="nav">
-  <button class="nav-btn on" onclick="goSec('browse')">📖 단어보기</button>
-  <button class="nav-btn" onclick="goSec('matchKo')">🔗 한글뜻 매칭</button>
-  <button class="nav-btn" onclick="goSec('matchDef')">🔍 영영풀이 매칭</button>
-  <button class="nav-btn" onclick="goSec('quizKo')">🧩 한글뜻 퀴즈</button>
-  <button class="nav-btn" onclick="goSec('quizDef')">📝 영영풀이 퀴즈</button>
+  <button class="nav-btn on" onclick="goSec('fillL1')">✏️ L1 빈칸</button>
+  <button class="nav-btn" onclick="goSec('fillL2')">✏️ L2 빈칸</button>
+  <button class="nav-btn" onclick="goSec('gramL1')">📐 L1 문법개념</button>
+  <button class="nav-btn" onclick="goSec('gramL2')">📐 L2 문법개념</button>
+  <button class="nav-btn" onclick="goSec('gqL1')">🧩 L1 문법퀴즈</button>
+  <button class="nav-btn" onclick="goSec('gqL2')">🧩 L2 문법퀴즈</button>
 </div>
 
-<!-- ─── BROWSE ─── -->
-<div class="sec on" id="sec-browse">
-  <div class="sec-title">📖 단어 목록</div>
-  <div style="display:flex;gap:6px;margin-bottom:12px;">
-    <button class="btn btn-s" style="font-size:.78rem;padding:6px 12px;" onclick="filterLesson(0)">전체</button>
-    <button class="btn btn-s" style="font-size:.78rem;padding:6px 12px;" onclick="filterLesson(1)"><span class="badge b1">L1</span></button>
-    <button class="btn btn-s" style="font-size:.78rem;padding:6px 12px;" onclick="filterLesson(2)"><span class="badge b2">L2</span></button>
-  </div>
-  <div id="browseList"></div>
-</div>
-
-<!-- ─── MATCH KO ─── -->
-<div class="sec" id="sec-matchKo">
-  <div class="sec-title">🔗 한글뜻 매칭</div>
-  <div class="stat-row">
-    <div class="stat"><div class="n" id="mkScore">0</div><div class="l">점수</div></div>
-    <div class="stat"><div class="n" id="mkRound">1</div><div class="l">라운드</div></div>
-    <div class="stat"><div class="n" id="mkLeft">6</div><div class="l">남은 쌍</div></div>
-  </div>
-  <div class="match-info">영어 단어와 한글 뜻을 연결하세요!</div>
-  <div class="match-cols">
-    <div><div class="match-col-title">영어</div><div id="mkEnCol"></div></div>
-    <div><div class="match-col-title">한글뜻</div><div id="mkKoCol"></div></div>
-  </div>
+<!-- ─── L1 FILL ─── -->
+<div class="sec on" id="sec-fillL1">
+  <div class="sec-title">✏️ L1 예문 빈칸 채우기</div>
+  <div id="fillL1Area"></div>
   <div class="btn-row">
-    <button class="btn btn-p" onclick="initMatchKo()">🔄 새 라운드</button>
+    <button class="btn btn-p" onclick="checkAllFill('L1')">✅ 전체 채점</button>
+    <button class="btn btn-s" onclick="resetFill('L1')">🔄 초기화</button>
   </div>
 </div>
 
-<!-- ─── MATCH DEF ─── -->
-<div class="sec" id="sec-matchDef">
-  <div class="sec-title">🔍 영영풀이 매칭</div>
-  <div class="stat-row">
-    <div class="stat"><div class="n" id="mdScore">0</div><div class="l">점수</div></div>
-    <div class="stat"><div class="n" id="mdRound">1</div><div class="l">라운드</div></div>
-    <div class="stat"><div class="n" id="mdLeft">4</div><div class="l">남은 쌍</div></div>
-  </div>
-  <div class="match-info">단어와 영어 설명을 연결하세요!</div>
-  <div id="mdWordCol" style="margin-bottom:8px;"></div>
-  <div id="mdDefCol"></div>
+<!-- ─── L2 FILL ─── -->
+<div class="sec" id="sec-fillL2">
+  <div class="sec-title">✏️ L2 예문 빈칸 채우기</div>
+  <div id="fillL2Area"></div>
   <div class="btn-row">
-    <button class="btn btn-p" onclick="initMatchDef()">🔄 새 라운드</button>
+    <button class="btn btn-p" onclick="checkAllFill('L2')">✅ 전체 채점</button>
+    <button class="btn btn-s" onclick="resetFill('L2')">🔄 초기화</button>
   </div>
 </div>
 
-<!-- ─── QUIZ KO ─── -->
-<div class="sec" id="sec-quizKo">
-  <div class="sec-title">🧩 한글뜻 퀴즈</div>
-  <div id="quizKoArea"></div>
+<!-- ─── L1 GRAMMAR CONCEPT ─── -->
+<div class="sec" id="sec-gramL1">
+  <div class="sec-title">📐 L1 문법 개념</div>
+
+  <div class="concept-card">
+    <h3>① to부정사의 형용사적 용법</h3>
+    <div class="rule-box">
+      <strong>형태:</strong> 「to+동사원형」<br>
+      <strong>의미:</strong> '~할', '~하는' → 명사를 뒤에서 수식<br>
+      <strong>어순:</strong> 명사/대명사 + to부정사
+    </div>
+    <div class="ex-box">I have homework <strong>to do</strong>.<div class="ex-ko">나는 해야 할 숙제가 있다.</div></div>
+    <div class="ex-box">She gave me some food <strong>to eat</strong>.<div class="ex-ko">그녀는 나에게 먹을 음식을 좀 주었다.</div></div>
+    <div class="ex-box">It is time <strong>to go</strong> to school.<div class="ex-ko">학교에 갈 시간이다.</div></div>
+    <div class="ex-box">I had many chances <strong>to see</strong> dolphins.<div class="ex-ko">나는 돌고래를 볼 기회가 많았다.</div></div>
+    <div class="rule-box" style="margin-top:10px;">
+      ⚠️ 전치사가 있는 경우: to부정사 <strong>뒤에 전치사</strong>를 씀<br>
+      I need a pen <strong>to write with</strong>. (쓸 펜)
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>② make + 목적어 + 형용사 (5형식)</h3>
+    <div class="rule-box">
+      <strong>형태:</strong> 「주어 + make + 목적어 + 형용사」<br>
+      <strong>의미:</strong> '(목적어)를 ~하게 만들다'<br>
+      ⚠️ 목적격 보어 자리: 형용사 O / 부사 X
+    </div>
+    <div class="ex-box">The novel <strong>made</strong> me <strong>sad</strong>. (O)<div class="ex-ko">그 소설은 나를 슬프게 만들었다.</div></div>
+    <div class="ex-box">The movie <strong>made</strong> me <strong>sadly</strong>. (X)<div class="ex-ko">→ sadly는 부사 → sad로 고쳐야 함</div></div>
+    <div class="ex-box">Love <strong>makes</strong> everything <strong>beautiful</strong>.<div class="ex-ko">사랑은 모든 것을 아름답게 만든다.</div></div>
+    <div class="rule-box" style="margin-top:10px;">
+      <strong>5형식 보어 종류:</strong><br>
+      • 형용사: make us emotional<br>
+      • to부정사: want you to apologize<br>
+      • 분사: heard people shouting
+    </div>
+  </div>
 </div>
 
-<!-- ─── QUIZ DEF ─── -->
-<div class="sec" id="sec-quizDef">
-  <div class="sec-title">📝 영영풀이 퀴즈</div>
-  <div id="quizDefArea"></div>
+<!-- ─── L2 GRAMMAR CONCEPT ─── -->
+<div class="sec" id="sec-gramL2">
+  <div class="sec-title">📐 L2 문법 개념</div>
+
+  <div class="concept-card">
+    <h3>① 간접의문문 (의문사 있는 경우)</h3>
+    <div class="rule-box">
+      <strong>일반 의문문:</strong> 의문사 + do/does + 주어 + 동사원형?<br>
+      <strong>간접의문문:</strong> 의문사 + <strong>주어 + 동사</strong> (어순 바뀜!)<br>
+      ⚠️ do/does/did 없애고 동사 시제 맞추기
+    </div>
+    <div class="ex-box">Where <u>is</u> the boy? → I want to know <strong>where the boy is</strong>.<div class="ex-ko">나는 그 소년이 어디에 있는지 알고 싶어.</div></div>
+    <div class="ex-box">What <u>did</u> you eat? → Tell me <strong>what you ate</strong>.<div class="ex-ko">점심으로 무엇을 먹었는지 말해 줘.</div></div>
+    <div class="rule-box" style="margin-top:10px;">
+      ⚠️ 의문사가 <strong>주어</strong>인 경우 → 「의문사+동사」그대로<br>
+      Tell me <strong>who called</strong> you. (who가 주어)
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>② want + 목적어 + to부정사</h3>
+    <div class="rule-box">
+      <strong>형태:</strong> 주어 + want + 목적어 + to부정사<br>
+      <strong>의미:</strong> '(목적어)가 ~하기를 원하다'<br>
+      <strong>부정:</strong> want + 목적어 + <strong>not</strong> to부정사
+    </div>
+    <div class="ex-box"><strong>I want you to help</strong> me.<div class="ex-ko">나는 네가 나를 도와주길 원해.</div></div>
+    <div class="ex-box">My mom <strong>wants me to study</strong> hard.<div class="ex-ko">엄마는 내가 열심히 공부하기를 원하셔.</div></div>
+    <div class="ex-box">My teacher <strong>wants me not to be</strong> late.<div class="ex-ko">선생님은 내가 늦지 않기를 원하신다.</div></div>
+    <div class="rule-box" style="margin-top:10px;">
+      <strong>3형식 vs 5형식:</strong><br>
+      • I <strong>want to</strong> save the Earth. (3형식 – 목적어=to부정사)<br>
+      • I <strong>want you to</strong> save the Earth. (5형식 – 목적어=you)
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <h3>③ 의문사 + to부정사</h3>
+    <div class="rule-box">
+      <strong>형태:</strong> 의문사(what/how/where/when/which) + to부정사<br>
+      <strong>역할:</strong> 명사처럼 주어·목적어·보어 역할<br>
+      <strong>바꾸기:</strong> 의문사 + 주어 + should/can + 동사원형
+    </div>
+    <div class="ex-box"><strong>What to do</strong> here is difficult. = what I should do<div class="ex-ko">여기서 무엇을 해야 할지 어렵다.</div></div>
+    <div class="ex-box">Can you tell me <strong>how to park</strong> a car?<div class="ex-ko">자동차를 주차하는 법을 알려줄 수 있니?</div></div>
+    <div class="rule-box" style="margin-top:8px;">⚠️ <strong>why + to부정사</strong>는 쓰지 않는다!</div>
+  </div>
+</div>
+
+<!-- ─── L1 GRAMMAR QUIZ ─── -->
+<div class="sec" id="sec-gqL1">
+  <div class="sec-title">🧩 L1 문법 퀴즈</div>
+  <div class="stat-row">
+    <div class="stat"><div class="n" id="gq1Correct">0</div><div class="l">정답</div></div>
+    <div class="stat"><div class="n" id="gq1Wrong">0</div><div class="l">오답</div></div>
+    <div class="stat"><div class="n" id="gq1Left">-</div><div class="l">남음</div></div>
+  </div>
+  <div id="gqL1Area"></div>
+</div>
+
+<!-- ─── L2 GRAMMAR QUIZ ─── -->
+<div class="sec" id="sec-gqL2">
+  <div class="sec-title">🧩 L2 문법 퀴즈</div>
+  <div class="stat-row">
+    <div class="stat"><div class="n" id="gq2Correct">0</div><div class="l">정답</div></div>
+    <div class="stat"><div class="n" id="gq2Wrong">0</div><div class="l">오답</div></div>
+    <div class="stat"><div class="n" id="gq2Left">-</div><div class="l">남음</div></div>
+  </div>
+  <div id="gqL2Area"></div>
 </div>
 
 <script>
-// ═══════════════ DATA ═══════════════
-const WORDS = [
-  // Lesson 1
-  {l:1, w:"wave",          ko:"(손을) 흔들다",      def:"to move your hand from side to side in the air to say hello"},
-  {l:1, w:"issue",         ko:"문제, 주제",          def:"an important topic that people are discussing"},
-  {l:1, w:"experience",    ko:"경험",                def:"knowledge or skill that you get from doing, seeing, or feeling things"},
-  {l:1, w:"survive",       ko:"살아남다",            def:"to continue to live or exist"},
-  {l:1, w:"search",        ko:"찾다, 검색하다",      def:"to carefully look for someone or something"},
-  {l:1, w:"aquarium",      ko:"수족관",              def:"a glass container in which fish and other water creatures can be kept"},
-  {l:1, w:"at the same time", ko:"동시에",          def:"two or more things happening together"},
-  {l:1, w:"blog",          ko:"블로그",              def:"a website on which one person or group puts new information regularly"},
-  {l:1, w:"ceremony",      ko:"의식",                def:"an important event that includes a set of formal or traditional actions"},
-  {l:1, w:"chance",        ko:"기회",                def:"a good time for you to do something"},
-  {l:1, w:"cleanup",       ko:"대청소",              def:"the act of cleaning something"},
-  {l:1, w:"dolphin",       ko:"돌고래",              def:"a sea animal that looks like a large fish with a pointed mouth"},
-  {l:1, w:"emotional",     ko:"감정적인",            def:"showing strong feelings to other people"},
-  {l:1, w:"endangered",    ko:"멸종 위기에 처한",    def:"in danger of disappearing because there are very few now alive"},
-  {l:1, w:"fishing net",   ko:"고기잡이 그물",       def:"something made of strings or wires used for catching fish or animals"},
-  {l:1, w:"global",        ko:"지구의",              def:"relating to the whole world"},
-  {l:1, w:"run an errand", ko:"심부름을 하다",       def:"to do a small job that involves going somewhere"},
-  {l:1, w:"take part in",  ko:"~에 참여하다",        def:"to join in an activity or event"},
-  {l:1, w:"be in charge of",ko:"~을 담당하다",       def:"to be responsible for something or someone"},
-  // Lesson 2
-  {l:2, w:"airport",       ko:"공항",                def:"a place where airplanes take off and land"},
-  {l:2, w:"apologize",     ko:"사과하다",            def:"to tell someone that you are sorry that you have done something wrong"},
-  {l:2, w:"arrival",       ko:"도착",                def:"the act of arriving somewhere"},
-  {l:2, w:"capital",       ko:"수도",                def:"an important city that is the center of government of a country"},
-  {l:2, w:"casual",        ko:"평상시의",            def:"not formal or not for a formal situation"},
-  {l:2, w:"communicate",   ko:"의사소통을 하다",     def:"to share information with others by speaking, writing, moving your body, etc."},
-  {l:2, w:"correctly",     ko:"제대로",              def:"in a way that is right or true"},
-  {l:2, w:"differently",   ko:"다르게",              def:"in a way that is not the same"},
-  {l:2, w:"emoji",         ko:"이모지",              def:"a small digital image that is used to show a feeling or idea in an email or text message"},
-  {l:2, w:"expression",    ko:"표현",                def:"something you say, write, or do to show your thoughts or feelings"},
-  {l:2, w:"gift",          ko:"선물",                def:"something that you give to someone as a present"},
-  {l:2, w:"in addition",   ko:"게다가",              def:"used for adding information to a statement"},
-  {l:2, w:"loud",          ko:"(소리가) 큰",         def:"making a sound that is very strong or high"},
-  {l:2, w:"meaning",       ko:"의미, 뜻",            def:"the thing or idea that a word, expression, or sign shows or tells"},
-  {l:2, w:"misunderstanding",ko:"오해",              def:"a situation where someone is confused or wrong about something"},
-  {l:2, w:"probably",      ko:"아마",                def:"used to say that something is likely to happen or likely to be true"},
-  {l:2, w:"repeat",        ko:"반복하다",            def:"to say, tell, or do something again"},
-  {l:2, w:"sensitive",     ko:"민감한, 예민한",      def:"easily changed or hurt by things around you"},
-  {l:2, w:"simple",        ko:"간단한, 단순한",      def:"easy to understand or do, not difficult"},
-  {l:2, w:"spell",         ko:"철자를 말하다",       def:"to say or write each letter of a word in the right order"},
-  {l:2, w:"talk behind one's back",ko:"~에 대해 험담하다", def:"to say bad things about someone to other people when they are not there"},
-  {l:2, w:"wonder",        ko:"궁금하다",            def:"to think about something because you are curious and want to know more"},
-];
-
-// ═══════════════ STATE ═══════════════
-let totalScore = 0;
-let progMax = 0; let progDone = 0;
-let currentLesson = 0;
-let mkSelEn=null, mkSelKo=null, mkScore=0, mkRound=1;
-let mdSelW=null, mdSelD=null, mdScore=0, mdRound=1;
-let quizKoIdx=0, quizKoData=[];
-let quizDefIdx=0, quizDefData=[];
-
-// ═══════════════ UTILS ═══════════════
-function shuffle(arr){ return [...arr].sort(()=>Math.random()-.5); }
-function pick(arr,n){ return shuffle(arr).slice(0,n); }
-function addScore(n){
-  totalScore+=n;
-  document.getElementById('scoreNum').textContent=totalScore;
-}
-function setProgress(done,total){
-  const p=total?Math.round(done/total*100):0;
-  document.getElementById('progFill').style.width=p+'%';
-}
-
-// ═══════════════ NAV ═══════════════
+// ─── STATE ───
+let totalScore=0;
+function addScore(n){ totalScore+=n; document.getElementById('scoreNum').textContent=totalScore; }
+function setProgress(d,t){ document.getElementById('progFill').style.width=(t?Math.round(d/t*100):0)+'%'; }
 function goSec(id){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('sec-'+id).classList.add('on');
   event.currentTarget.classList.add('on');
-  if(id==='matchKo') initMatchKo();
-  if(id==='matchDef') initMatchDef();
-  if(id==='quizKo') initQuizKo();
-  if(id==='quizDef') initQuizDef();
+  if(id==='gqL1') initGQ(1);
+  if(id==='gqL2') initGQ(2);
+  if(id==='fillL1') renderFill('L1');
+  if(id==='fillL2') renderFill('L2');
 }
 
-// ═══════════════ BROWSE ═══════════════
-function filterLesson(n){
-  currentLesson=n;
-  renderBrowse();
-}
-function renderBrowse(){
-  const list = currentLesson===0 ? WORDS : WORDS.filter(w=>w.l===currentLesson);
-  const html = list.map((w,i)=>`
-    <div class="wcard">
-      <div class="wcard-top">
-        <span class="badge ${w.l===1?'b1':'b2'}">L${w.l}</span>
-        <span class="wcard-en">${w.w}</span>
-        <span class="wcard-ko">${w.ko}</span>
-      </div>
-      <div class="wcard-def">📖 ${w.def}</div>
+// ─── FILL DATA ───
+const FILL_L1 = [
+  { ko:"나는 큰 거북이 한 마리를 수족관에서 보았다.", en:"I saw a big turtle in the ___.", ans:"aquarium", hint:"a_u_r_u_" },
+  { ko:"우리는 그 이야기를 들었을 때, 다 같이 동시에 웃었다.", en:"When we heard the story, we all laughed ___.", ans:"at the same time", hint:"at the ~~~" },
+  { ko:"우리 엄마는 작년에 여행 블로그를 시작하셨다.", en:"My mom started a travel ___ last year.", ans:"blog", hint:"b___" },
+  { ko:"결혼식은 이 건물에서 열렸다.", en:"The wedding ___ was held in this building.", ans:"ceremony", hint:"c_r___ny" },
+  { ko:"나는 스페인을 방문할 기회가 있었다.", en:"I had a ___ to visit Spain.", ans:"chance", hint:"ch___e" },
+  { ko:"아이들이 청소를 도왔다.", en:"The children helped with the ___.", ans:"cleanup", hint:"cl___up" },
+  { ko:"우리는 돌고래를 보러 보트 여행을 했다.", en:"We took a boat trip to see the ___s.", ans:"dolphins", hint:"d___ins" },
+  { ko:"그녀는 슬픈 영화를 볼 때 항상 감정적이 된다.", en:"She always gets ___ during sad movies.", ans:"emotional", hint:"e_oti___l" },
+  { ko:"많은 식물들이 지구 온난화 때문에 멸종 위기에 처해 있다.", en:"Many plants are ___ because of global warming.", ans:"endangered", hint:"en___ered" },
+  { ko:"그 남자는 물고기를 잡기 위해 고기잡이 그물을 물에 던졌다.", en:"The man threw his ___ into the water.", ans:"fishing net", hint:"f___ing n__" },
+  { ko:"새로운 나라로 여행하는 것은 항상 멋진 경험이다.", en:"Traveling to new countries is always a great ___.", ans:"experience", hint:"e___ience" },
+  { ko:"지구의 날씨는 각 지역마다 다르다.", en:"___ weather is different in each place.", ans:"Global", hint:"Gl___l" },
+  { ko:"그 사람은 계속 살아남을 수 없다.", en:"These plants cannot ___ without water.", ans:"survive", hint:"su___ve" },
+  { ko:"많은 사람들이 스마트폰으로 인터넷을 검색한다.", en:"Many people ___ the Internet on their smartphone.", ans:"search", hint:"s___ch" },
+];
+const FILL_L2 = [
+  { ko:"공항에서 호텔까지 가는 버스가 있다.", en:"There is a bus from the ___ to the hotel.", ans:"airport", hint:"ai___rt" },
+  { ko:"그녀는 자신의 실수에 대해 사과했다.", en:"She ___ for her mistake.", ans:"apologized", hint:"apol___ized" },
+  { ko:"그 기차의 도착은 정시에 이루어졌다.", en:"The ___ of the train was on time.", ans:"arrival", hint:"arr___al" },
+  { ko:"나는 한국의 수도인 서울을 방문하고 싶다.", en:"I want to visit Seoul, the ___ of South Korea.", ans:"capital", hint:"cap___al" },
+  { ko:"우리는 학교에서 특별한 날에 평상복을 입는다.", en:"We wear ___ clothes on special days at school.", ans:"casual", hint:"c___al" },
+  { ko:"동물은 소리를 통해서 서로 의사소통을 한다.", en:"Animals ___ with each other through sounds.", ans:"communicate", hint:"comm___cate" },
+  { ko:"그 기계는 제대로 작동하고 있지 않다.", en:"The machine isn't working ___.", ans:"correctly", hint:"cor___tly" },
+  { ko:"그 영화는 내가 예상했던 것과 다르게 끝났다.", en:"The movie ended ___ than I expected.", ans:"differently", hint:"diff___ntly" },
+  { ko:"Sally는 자신의 메시지에 하트 이모지를 사용하는 것을 좋아한다.", en:"Sally loves using heart ___s in her messages.", ans:"emoji", hint:"em___" },
+  { ko:"미소는 행복의 표현이다.", en:"A smile is an ___ of happiness.", ans:"expression", hint:"ex___sion" },
+  { ko:"나의 부모님은 크리스마스 선물을 나에게 주셨다.", en:"My parents gave me a ___ for Christmas.", ans:"gift", hint:"g__t" },
+  { ko:"게다가, 그 건물에는 체육관이 있다.", en:"-___, there is a gym in the building.", ans:"In addition", hint:"In a___ion" },
+  { ko:"나는 그 농담의 의미를 이해하지 못했다.", en:"I didn't understand the ___ of the joke.", ans:"meaning", hint:"m___ing" },
+  { ko:"그녀는 내가 화났다고 생각했지만, 그것은 단지 오해였다.", en:"She thought I was angry, but it was just a ___.", ans:"misunderstanding", hint:"mis___ding" },
+  { ko:"그들은 긴 여행 후에 아마 피곤할 것이다.", en:"They are ___ tired after the long trip.", ans:"probably", hint:"pro___bly" },
+  { ko:"그 질문을 한 번 더 말해 줄래요?", en:"Can you ___ the question, please?", ans:"repeat", hint:"re___at" },
+  { ko:"그녀는 배고플 때 예민해진다.", en:"She gets ___ when she's hungry.", ans:"sensitive", hint:"sen___ive" },
+  { ko:"그 단어의 철자를 천천히 말해 주세요.", en:"Please ___ the word slowly.", ans:"spell", hint:"sp___" },
+  { ko:"나는 그녀가 내 험담을 했다는 것을 믿을 수 없다.", en:"I can't believe that she talked ___ my back.", ans:"behind", hint:"beh___" },
+  { ko:"나는 그들이 그 영화를 어떻게 만들었는지 궁금하다.", en:"I ___ how they made that movie.", ans:"wonder", hint:"won___" },
+];
+
+function renderFill(lesson){
+  const data = lesson==='L1' ? FILL_L1 : FILL_L2;
+  const area = document.getElementById('fill'+lesson+'Area');
+  const colors = lesson==='L1' ? 'b1' : 'b2';
+  area.innerHTML = data.map((q,i)=>`
+    <div class="fill-card" id="fill${lesson}-${i}">
+      <div class="fill-num"><span class="badge ${colors}">${lesson}</span> ${i+1} / ${data.length}</div>
+      <div class="fill-ko">${q.ko}</div>
+      <div class="fill-en">${q.en.replace('___',`<input class="blank" id="bi${lesson}${i}" placeholder="${q.hint}" autocomplete="off" autocorrect="off" spellcheck="false">`)}</div>
+      <div class="fill-feedback" id="ff${lesson}${i}"></div>
     </div>
   `).join('');
-  document.getElementById('browseList').innerHTML=html;
 }
-renderBrowse();
 
-// ═══════════════ MATCH KO ═══════════════
-let mkPairs=[], mkDoneCount=0;
-function initMatchKo(){
-  mkSelEn=null; mkSelKo=null; mkDoneCount=0;
-  const pool = WORDS; // all words
-  mkPairs = pick(pool, 6);
-  const enItems = shuffle(mkPairs);
-  const koItems = shuffle(mkPairs);
-  document.getElementById('mkLeft').textContent=6;
-  document.getElementById('mkScore').textContent=mkScore;
-  document.getElementById('mkRound').textContent=mkRound;
-
-  const enHTML = enItems.map(w=>`
-    <div class="match-item" id="mken-${w.w.replace(/ /g,'_')}" onclick="matchKoClick('en','${w.w.replace(/ /g,'_')}',this)">${w.w}</div>
-  `).join('');
-  const koHTML = koItems.map(w=>`
-    <div class="match-item" id="mkko-${w.w.replace(/ /g,'_')}" onclick="matchKoClick('ko','${w.w.replace(/ /g,'_')}',this)">${w.ko}</div>
-  `).join('');
-  document.getElementById('mkEnCol').innerHTML=enHTML;
-  document.getElementById('mkKoCol').innerHTML=koHTML;
-}
-function matchKoClick(type, key, el){
-  if(el.classList.contains('ok')||el.classList.contains('ghost')) return;
-  if(type==='en'){
-    if(mkSelEn){ document.getElementById('mken-'+mkSelEn)?.classList.remove('sel'); }
-    mkSelEn=key; el.classList.add('sel');
-  } else {
-    if(mkSelKo){ document.getElementById('mkko-'+mkSelKo)?.classList.remove('sel'); }
-    mkSelKo=key; el.classList.add('sel');
-  }
-  if(mkSelEn && mkSelKo){
-    if(mkSelEn===mkSelKo){
-      // correct
-      document.getElementById('mken-'+mkSelEn).classList.replace('sel','ok');
-      document.getElementById('mkko-'+mkSelKo).classList.replace('sel','ok');
-      mkScore+=10; addScore(10);
-      mkDoneCount++;
-      document.getElementById('mkScore').textContent=mkScore;
-      document.getElementById('mkLeft').textContent=6-mkDoneCount;
-      if(mkDoneCount===6){ setTimeout(()=>{ mkRound++; initMatchKo(); },600); }
+function checkAllFill(lesson){
+  const data = lesson==='L1' ? FILL_L1 : FILL_L2;
+  let correct=0;
+  data.forEach((q,i)=>{
+    const inp = document.getElementById('bi'+lesson+i);
+    const fb = document.getElementById('ff'+lesson+i);
+    if(!inp) return;
+    const val = inp.value.trim().toLowerCase();
+    const ans = q.ans.toLowerCase();
+    if(val===ans){
+      inp.classList.remove('err'); inp.classList.add('ok');
+      fb.textContent='✅ 정답!'; fb.className='fill-feedback show ok';
+      correct++;
     } else {
-      document.getElementById('mken-'+mkSelEn).classList.add('err');
-      document.getElementById('mkko-'+mkSelKo).classList.add('err');
-      setTimeout(()=>{
-        document.getElementById('mken-'+mkSelEn)?.classList.remove('err','sel');
-        document.getElementById('mkko-'+mkSelKo)?.classList.remove('err','sel');
-        mkSelEn=null; mkSelKo=null;
-      },500);
-      mkSelEn=null; mkSelKo=null; return;
+      inp.classList.remove('ok'); inp.classList.add('err');
+      fb.textContent=`❌ 정답: ${q.ans}`; fb.className='fill-feedback show err';
     }
-    mkSelEn=null; mkSelKo=null;
-  }
+  });
+  addScore(correct*5);
+  alert(`채점 완료! ${correct}/${data.length} 정답 (+${correct*5}점)`);
 }
 
-// ═══════════════ MATCH DEF ═══════════════
-let mdPairs=[], mdDoneCount=0;
-function initMatchDef(){
-  mdSelW=null; mdSelD=null; mdDoneCount=0;
-  mdPairs = pick(WORDS, 4);
-  const wItems = shuffle(mdPairs);
-  const dItems = shuffle(mdPairs);
-  document.getElementById('mdLeft').textContent=4;
-  document.getElementById('mdScore').textContent=mdScore;
-  document.getElementById('mdRound').textContent=mdRound;
-
-  const wHTML = wItems.map(w=>`
-    <div class="match-item" style="margin-bottom:6px;" id="mdw-${w.w.replace(/ /g,'_')}" onclick="matchDefClick('w','${w.w.replace(/ /g,'_')}',this)">${w.w}</div>
-  `).join('');
-  const dHTML = dItems.map(w=>`
-    <div class="match-item" style="margin-bottom:6px;font-size:.75rem;font-weight:400;min-height:56px;" id="mdd-${w.w.replace(/ /g,'_')}" onclick="matchDefClick('d','${w.w.replace(/ /g,'_')}',this)">${w.def}</div>
-  `).join('');
-  document.getElementById('mdWordCol').innerHTML=wHTML;
-  document.getElementById('mdDefCol').innerHTML=dHTML;
-}
-function matchDefClick(type, key, el){
-  if(el.classList.contains('ok')) return;
-  if(type==='w'){
-    if(mdSelW){ document.getElementById('mdw-'+mdSelW)?.classList.remove('sel'); }
-    mdSelW=key; el.classList.add('sel');
-  } else {
-    if(mdSelD){ document.getElementById('mdd-'+mdSelD)?.classList.remove('sel'); }
-    mdSelD=key; el.classList.add('sel');
-  }
-  if(mdSelW && mdSelD){
-    if(mdSelW===mdSelD){
-      document.getElementById('mdw-'+mdSelW).classList.replace('sel','ok');
-      document.getElementById('mdd-'+mdSelD).classList.replace('sel','ok');
-      mdScore+=15; addScore(15);
-      mdDoneCount++;
-      document.getElementById('mdScore').textContent=mdScore;
-      document.getElementById('mdLeft').textContent=4-mdDoneCount;
-      if(mdDoneCount===4){ setTimeout(()=>{ mdRound++; initMatchDef(); },600); }
-    } else {
-      document.getElementById('mdw-'+mdSelW).classList.add('err');
-      document.getElementById('mdd-'+mdSelD).classList.add('err');
-      setTimeout(()=>{
-        document.getElementById('mdw-'+mdSelW)?.classList.remove('err','sel');
-        document.getElementById('mdd-'+mdSelD)?.classList.remove('err','sel');
-        mdSelW=null; mdSelD=null;
-      },500);
-      mdSelW=null; mdSelD=null; return;
-    }
-    mdSelW=null; mdSelD=null;
-  }
+function resetFill(lesson){
+  const data = lesson==='L1' ? FILL_L1 : FILL_L2;
+  data.forEach((q,i)=>{
+    const inp = document.getElementById('bi'+lesson+i);
+    const fb = document.getElementById('ff'+lesson+i);
+    if(inp){ inp.value=''; inp.classList.remove('ok','err'); }
+    if(fb){ fb.className='fill-feedback'; }
+  });
 }
 
-// ═══════════════ QUIZ KO ═══════════════
-function initQuizKo(){
-  quizKoData = shuffle(WORDS);
-  quizKoIdx=0;
-  renderQuizKo();
+// ─── GRAMMAR QUIZ DATA ───
+const GQ_L1 = [
+  {
+    q:"나는 해야 할 숙제가 있다.\nI have homework ___.",
+    opts:["do","doing","to do","done"],
+    ans:2, exp:"to부정사의 형용사적 용법: homework(명사)를 뒤에서 수식. '해야 할' → to do"
+  },
+  {
+    q:"She gave me some food ___.\n그녀는 나에게 먹을 음식을 좀 주었다.",
+    opts:["eat","eating","to eat","eaten"],
+    ans:2, exp:"food(명사)를 수식하는 to부정사: food to eat = 먹을 음식"
+  },
+  {
+    q:"It is time ___ to school.\n학교에 갈 시간이다.",
+    opts:["go","going","to go","goes"],
+    ans:2, exp:"time(명사) 뒤 to부정사: time to go = 갈 시간"
+  },
+  {
+    q:"다음 중 어법상 틀린 것은?\nThe ceremony made all the members ___ quite emotional.",
+    opts:["feel","felt","to feel","feeling"],
+    ans:0, exp:"make+O+형용사(원형): made members feel → 5형식. emotional은 형용사로 목적격 보어"
+  },
+  {
+    q:"The novel made me ___.\n그 소설은 나를 슬프게 만들었다.",
+    opts:["sad","sadly","sadness","sadden"],
+    ans:0, exp:"make+목적어+형용사: 목적격 보어 자리에는 형용사(sad)! 부사(sadly)는 X"
+  },
+  {
+    q:"I need a pen ___.\n나는 쓸 펜이 하나 필요하다.",
+    opts:["write","writing","to write","to write with"],
+    ans:3, exp:"pen을 수식하는 to부정사. write with a pen이므로 전치사 with가 뒤에 필요: a pen to write with"
+  },
+  {
+    q:"다음 빈칸에 들어갈 말은?\nShe has enough time ___ to jog.",
+    opts:["for","to","of","with"],
+    ans:1, exp:"enough time to jog: 시간(명사)를 수식하는 형용사적 to부정사"
+  },
+  {
+    q:"Exercising regularly makes people ___.\n규칙적으로 운동하는 것은 사람들을 건강하게 만든다.",
+    opts:["healthy","healthily","health","more healthily"],
+    ans:0, exp:"make+목적어+형용사: people(목적어) healthy(형용사). 부사 healthily는 X"
+  },
+  {
+    q:"다음 중 어법상 옳은 것은?",
+    opts:["The movie made me sadly.","Love makes everything beautiful.","She wants someone help her.","I have no time going there."],
+    ans:1, exp:"Love makes everything beautiful. → make+목적어(everything)+형용사(beautiful) ✅"
+  },
+  {
+    q:"We need tools ___ this broken chair.\n우리는 이 부서진 의자를 고칠 도구가 필요하다.",
+    opts:["fix","fixing","to fix","fixed"],
+    ans:2, exp:"tools(명사) 뒤 형용사적 to부정사: tools to fix = 고칠 도구"
+  },
+];
+
+const GQ_L2 = [
+  {
+    q:"나는 그들이 언제 떠났는지 모른다.\nI don't know ___.",
+    opts:["when they left","when did they leave","when they did leave","they left when"],
+    ans:0, exp:"간접의문문 어순: 의문사+주어+동사. when they left ✅ (did 없앰, left로 과거시제)"
+  },
+  {
+    q:"Do you know ___ the post office is?\n너는 우체국이 어디에 있는지 아니?",
+    opts:["where","where is","that where","where does"],
+    ans:0, exp:"간접의문문: where(의문사)+the post office(주어)+is(동사). 어순 그대로"
+  },
+  {
+    q:"Tell me ___.\n내가 무엇을 해야 할지 말해 줘.",
+    opts:["what to do","what do I","what should I do","what I do"],
+    ans:0, exp:"의문사+to부정사: what to do = 무엇을 해야 할지 (= what I should do)"
+  },
+  {
+    q:"I wonder why ___ so sad.\n나는 왜 그가 그렇게 슬픈지 궁금하다.",
+    opts:["does he look","he looks","he look","is he looking"],
+    ans:1, exp:"간접의문문: why + 주어(he) + 동사(looks). why he looks ✅"
+  },
+  {
+    q:"My mom wants me ___ hard.\n엄마는 내가 열심히 공부하기를 원하셔.",
+    opts:["study","studied","to study","studying"],
+    ans:2, exp:"want+목적어(me)+to부정사: wants me to study ✅"
+  },
+  {
+    q:"다음 중 어법상 틀린 것은?",
+    opts:["Tell me where Jina lives.","I want to know who called me.","Tell me where does she work.","I wonder why he is so busy."],
+    ans:2, exp:"Tell me where does she work. → 간접의문문 어순 오류. where she works로 고쳐야 함"
+  },
+  {
+    q:"Can you tell me ___ a car?\n내게 자동차를 주차하는 법을 알려줄 수 있니?",
+    opts:["how to park","how park","how parking","how I park"],
+    ans:0, exp:"how+to부정사: how to park = 주차하는 법 (= how I should park)"
+  },
+  {
+    q:"나는 네가 나에게 사과해 주길 원해.\nI want ___ to me.",
+    opts:["you apologize","you to apologize","that you apologize","you apologizing"],
+    ans:1, exp:"want+목적어(you)+to부정사(to apologize) ✅"
+  },
+  {
+    q:"She wants him ___.\n그녀는 그가 그 탁자를 청소하기를 원한다.",
+    opts:["clean the table","to clean the table","cleaning the table","cleans the table"],
+    ans:1, exp:"want+목적어(him)+to부정사(to clean) ✅"
+  },
+  {
+    q:"I don't know ___ this paper.\n나는 이 종이로 무엇을 만들어야 할지 모르겠다.",
+    opts:["what to make","what making","what make","to make what"],
+    ans:0, exp:"의문사+to부정사: what to make with this paper ✅"
+  },
+];
+
+let gqState = {1:{idx:0, data:[], correct:0, wrong:0}, 2:{idx:0, data:[], correct:0, wrong:0}};
+
+function initGQ(l){
+  const data = l===1 ? [...GQ_L1] : [...GQ_L2];
+  gqState[l] = {idx:0, data: data.sort(()=>Math.random()-.5), correct:0, wrong:0};
+  renderGQ(l);
 }
-function renderQuizKo(){
-  if(quizKoIdx>=quizKoData.length){
-    document.getElementById('quizKoArea').innerHTML=`
-      <div class="result-banner"><h2>🎉 완료!</h2><p>모든 단어를 다 풀었어요!</p></div>
-      <div class="btn-row"><button class="btn btn-p" onclick="initQuizKo()">🔄 다시 풀기</button></div>`;
+
+function renderGQ(l){
+  const s = gqState[l];
+  const area = document.getElementById('gqL'+l+'Area');
+  document.getElementById('gq'+l+'Correct').textContent = s.correct;
+  document.getElementById('gq'+l+'Wrong').textContent = s.wrong;
+
+  if(s.idx >= s.data.length){
+    const total = s.data.length;
+    area.innerHTML=`
+      <div class="result-banner">
+        <h2>${s.correct>=total*0.8?'🎉':'💪'} ${s.correct}/${total}</h2>
+        <p>${s.correct>=total*0.8?'훌륭해요!':'다시 도전해 봐요!'}</p>
+      </div>
+      <div class="btn-row"><button class="btn btn-p" onclick="initGQ(${l})">🔄 다시 풀기</button></div>`;
     return;
   }
-  const cur = quizKoData[quizKoIdx];
-  const wrong = shuffle(WORDS.filter(w=>w.w!==cur.w)).slice(0,3);
-  const opts = shuffle([cur, ...wrong]);
-  const pct = Math.round(quizKoIdx/quizKoData.length*100);
-  setProgress(quizKoIdx, quizKoData.length);
 
-  document.getElementById('quizKoArea').innerHTML=`
-    <div class="q-card">
-      <div class="q-num">${quizKoIdx+1} / ${quizKoData.length}</div>
-      <div class="q-word">${cur.w}</div>
-      <div class="q-hint">📖 ${cur.def}</div>
-      <div class="opts">
-        ${opts.map(o=>`<button class="opt" onclick="checkQuizKo('${o.w.replace(/'/g,"\\'")}','${cur.w.replace(/'/g,"\\'")}',this)">${o.ko}</button>`).join('')}
-      </div>
-      <div class="q-feedback" id="qkFb"></div>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-s" onclick="quizKoIdx++;renderQuizKo()">건너뛰기 ➡️</button>
+  document.getElementById('gq'+l+'Left').textContent = s.data.length - s.idx;
+  setProgress(s.idx, s.data.length);
+
+  const q = s.data[s.idx];
+  const optsHTML = q.opts.map((o,i)=>`
+    <button class="opt" onclick="checkGQ(${l},${i},this)">${i+1}. ${o}</button>
+  `).join('');
+
+  area.innerHTML=`
+    <div class="gq-card">
+      <div class="gq-num">${s.idx+1} / ${s.data.length}</div>
+      <div class="gq-q">${q.q.replace(/\n/g,'<br>')}</div>
+      <div class="opts">${optsHTML}</div>
+      <div class="gq-fb" id="gqFb${l}"></div>
+      <div class="exp-box" id="gqExp${l}">${q.exp}</div>
     </div>`;
 }
-function checkQuizKo(selected, correct, el){
-  document.querySelectorAll('#quizKoArea .opt').forEach(b=>b.disabled=true);
-  const fb = document.getElementById('qkFb');
-  if(selected===correct){
+
+function checkGQ(l, selected, el){
+  const s = gqState[l];
+  const q = s.data[s.idx];
+  document.querySelectorAll(`#gqL${l}Area .opt`).forEach(b=>b.disabled=true);
+  const fb = document.getElementById('gqFb'+l);
+  const exp = document.getElementById('gqExp'+l);
+
+  if(selected===q.ans){
     el.classList.add('ok');
-    fb.textContent='✅ 정답!'; fb.className='q-feedback show ok';
-    addScore(5);
-    setTimeout(()=>{ quizKoIdx++; renderQuizKo(); },800);
+    fb.textContent='✅ 정답!'; fb.className='gq-fb show ok';
+    s.correct++; addScore(10);
   } else {
     el.classList.add('err');
-    document.querySelectorAll('#quizKoArea .opt').forEach(b=>{ if(b.textContent===WORDS.find(w=>w.w===correct)?.ko) b.classList.add('reveal'); });
-    fb.textContent='❌ 틀렸어요! 정답: '+WORDS.find(w=>w.w===correct)?.ko;
-    fb.className='q-feedback show err';
-    setTimeout(()=>{ quizKoIdx++; renderQuizKo(); },1400);
+    document.querySelectorAll(`#gqL${l}Area .opt`)[q.ans]?.classList.add('reveal');
+    fb.textContent='❌ 틀렸어요!'; fb.className='gq-fb show err';
+    s.wrong++;
   }
+  exp.classList.add('show');
+  document.getElementById('gq'+l+'Correct').textContent=s.correct;
+  document.getElementById('gq'+l+'Wrong').textContent=s.wrong;
+
+  setTimeout(()=>{ s.idx++; renderGQ(l); },1600);
 }
 
-// ═══════════════ QUIZ DEF ═══════════════
-function initQuizDef(){
-  quizDefData = shuffle(WORDS);
-  quizDefIdx=0;
-  renderQuizDef();
-}
-function renderQuizDef(){
-  if(quizDefIdx>=quizDefData.length){
-    document.getElementById('quizDefArea').innerHTML=`
-      <div class="result-banner"><h2>🎉 완료!</h2><p>모든 영영풀이 퀴즈 완료!</p></div>
-      <div class="btn-row"><button class="btn btn-p" onclick="initQuizDef()">🔄 다시 풀기</button></div>`;
-    return;
-  }
-  const cur = quizDefData[quizDefIdx];
-  const wrong = shuffle(WORDS.filter(w=>w.w!==cur.w)).slice(0,3);
-  const opts = shuffle([cur, ...wrong]);
-  setProgress(quizDefIdx, quizDefData.length);
-
-  document.getElementById('quizDefArea').innerHTML=`
-    <div class="q-card">
-      <div class="q-num">${quizDefIdx+1} / ${quizDefData.length}</div>
-      <div class="q-hint" style="font-size:.9rem;color:var(--text);margin-bottom:14px;">"${cur.def}"</div>
-      <div class="opts">
-        ${opts.map(o=>`<button class="opt" onclick="checkQuizDef('${o.w.replace(/'/g,"\\'").replace(/"/g,'\\"')}','${cur.w.replace(/'/g,"\\'").replace(/"/g,'\\"')}',this)">${o.w}</button>`).join('')}
-      </div>
-      <div class="q-feedback" id="qdFb"></div>
-    </div>
-    <div class="btn-row">
-      <button class="btn btn-s" onclick="quizDefIdx++;renderQuizDef()">건너뛰기 ➡️</button>
-    </div>`;
-}
-function checkQuizDef(selected, correct, el){
-  document.querySelectorAll('#quizDefArea .opt').forEach(b=>b.disabled=true);
-  const fb = document.getElementById('qdFb');
-  if(selected===correct){
-    el.classList.add('ok');
-    fb.textContent='✅ 정답!'; fb.className='q-feedback show ok';
-    addScore(8);
-    setTimeout(()=>{ quizDefIdx++; renderQuizDef(); },800);
-  } else {
-    el.classList.add('err');
-    document.querySelectorAll('#quizDefArea .opt').forEach(b=>{ if(b.textContent===correct) b.classList.add('reveal'); });
-    fb.textContent='❌ 틀렸어요! 정답: '+correct;
-    fb.className='q-feedback show err';
-    setTimeout(()=>{ quizDefIdx++; renderQuizDef(); },1400);
-  }
-}
-
-// init
-initMatchKo(); initMatchDef();
+// INIT
+renderFill('L1');
+renderFill('L2');
 </script>
 </body>
 </html>
